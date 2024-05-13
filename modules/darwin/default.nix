@@ -50,6 +50,8 @@
       };
       # to apply changes run
       # /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+      # show current with
+      # plutil -p ~/Library/Preferences/com.apple.symbolichotkeys.plist
       # https://gist.github.com/mkhl/455002#file-ctrl-f1-c-L12
       # https://web.archive.org/web/20130430100126/http://hintsforums.macworld.com/showthread.php?t=114785
       "com.apple.symbolichotkeys" = {
@@ -68,6 +70,10 @@
           };
           "64" = {
             # Cmd-Spc - Spotlight
+            enabled = false;
+          };
+          "65" = {
+            # Cmd-M-Spc - Show finder
             enabled = false;
           };
         };

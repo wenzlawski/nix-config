@@ -156,6 +156,10 @@
       target = "Library/Keyboard Layouts/Colemak_DH.bundle";
       source = ./dotfiles/Colemak_DH.bundle;
     };
+    "emacs-capture" = {
+      target = ".config/raycast/scripts/emacs-capture.sh";
+      source = ./dotfiles/raycast/emacs-capture.sh;
+    };
   };
 
   # programs.zsh.enableCompletion = true;
