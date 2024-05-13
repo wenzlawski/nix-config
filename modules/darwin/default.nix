@@ -110,7 +110,7 @@
       "spotify"
       "zotero@beta"
     ];
-    taps = [ ];
+    taps = [ "homebrew/cask-fonts" ];
     brews = [ ];
   };
 }
