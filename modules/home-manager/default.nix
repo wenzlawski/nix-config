@@ -70,6 +70,7 @@
       enable = true;
       userEmail = "marc.wenzlawski@outlook.de";
       userName = "Marc Wenzlawski";
+      ignores = [".DS_Store"];
     };
     zsh.enable = true;
     bat = {
