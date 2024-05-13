@@ -41,6 +41,7 @@
     gnumake
     msmtp
     neovim
+    net-news-wire
     ninja
     notmuch
     pandoc
