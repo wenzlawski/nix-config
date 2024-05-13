@@ -1,7 +1,4 @@
-{ pkgs
-, lib
-, ...
-}: {
+{ pkgs, lib, ... }: {
   # Don't change this when you change package input. Leave it alone.
   home.stateVersion = "23.11";
 
@@ -70,6 +67,7 @@
   programs = {
     eza.enable = true;
     git = {
+      enable = true;
       userEmail = "marc.wenzlawski@outlook.de";
       userName = "Marc Wenzlawski";
     };
@@ -134,10 +132,10 @@
       target = ".config/fish/conf.d/abbr.fish";
       source = ./dotfiles/fish/conf.d/abbr.fish;
     };
-    "direnv" = {
-      target = ".config/fish/completions/direnv.fish";
-      source = ./dotfiles/fish/completions/direnv.fish;
-    };
+    # "direnv" = {
+    #   target = ".config/fish/completions/direnv.fish";
+    #   source = ./dotfiles/fish/completions/direnv.fish;
+    # };
     "items" = {
       target = "Library/Application Support/MTMR/items.json";
       source = ./dotfiles/mtmr.json;
