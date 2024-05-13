@@ -152,6 +152,10 @@
       target = ".config/direnv/direnvrc";
       source = ./dotfiles/direnvrc;
     };
+    "colemak" = {
+      target = "Library/Keyboard Layouts/Colemak_DH.bundle";
+      source = ./dotfiles/Colemak_DH.bundle;
+    };
   };
 
   # programs.zsh.enableCompletion = true;

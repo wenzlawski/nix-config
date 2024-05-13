@@ -109,6 +109,7 @@
       "qlmarkdown"
       "qlstephen"
       "spotify"
+      # "vmware-fusion" # download fails
       "zotero@beta"
     ];
     taps = [ "homebrew/cask-fonts" "finestructure/hummingbird" ];
