@@ -1,19 +1,18 @@
-{
-  agenix,
-  pkgs,
-  ...
+{ agenix
+, pkgs
+, ...
 }: {
   # here go the darwin preferences and config items
-  imports = [./secrets.nix agenix.darwinModules.default];
+  imports = [ ./secrets.nix agenix.darwinModules.default ];
   users.users.mw.home = "/Users/mw";
   programs.fish.enable = true;
   users.users.mw.shell = pkgs.fish;
   environment = {
-    shells = with pkgs; [bash zsh fish];
+    shells = with pkgs; [ bash zsh fish ];
     loginShell = pkgs.fish;
-    systemPackages = [pkgs.coreutils agenix.packages.x86_64-darwin.default];
-    systemPath = ["/usr/local/bin"];
-    pathsToLink = ["/Applications"];
+    systemPackages = [ pkgs.coreutils agenix.packages.x86_64-darwin.default ];
+    systemPath = [ "/usr/local/bin" ];
+    pathsToLink = [ "/Applications" ];
   };
   nix.extraOptions = ''
     experimental-features = nix-command flakes
@@ -21,7 +20,7 @@
   system.keyboard.enableKeyMapping = true;
   # system.keyboard.remapCapsLockToEscape = true;
   fonts.fontDir.enable = true; # DANGER
-  fonts.fonts = [(pkgs.nerdfonts.override {fonts = ["Meslo"];})];
+  fonts.fonts = [ (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; }) ];
   services.nix-daemon.enable = true;
   system.startup.chime = false;
   system.defaults = {
@@ -81,7 +80,7 @@
     enable = true;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
-    masApps = {};
+    masApps = { };
     casks = [
       "librewolf"
       "freeplane"
@@ -100,7 +99,7 @@
       "spotify"
       "espanso"
     ];
-    taps = [];
-    brews = [];
+    taps = [ ];
+    brews = [ ];
   };
 }

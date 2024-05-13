@@ -1,7 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
+{ pkgs
+, lib
+, ...
 }: {
   # Don't change this when you change package input. Leave it alone.
   home.stateVersion = "23.11";
@@ -88,7 +87,7 @@
       enable = true;
       enableBashIntegration = true; # see note on other shells below
       nix-direnv.enable = true;
-      config = {hide_env_diff = true;};
+      config = { hide_env_diff = true; };
     };
     fish = {
       enable = true;
@@ -97,7 +96,7 @@
         set pure_enable_nixdevshell true
       '';
       loginShellInit = "";
-      shellAliases = lib.mkForce {};
+      shellAliases = lib.mkForce { alejandra = "alejandra -q"; };
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs
         {
