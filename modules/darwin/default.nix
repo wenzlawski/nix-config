@@ -87,6 +87,7 @@
       "dozer"
       "dropbox"
       "espanso"
+      "finestructure/hummingbird/hummingbird"
       "font-fira-code"
       "font-hack"
       "font-ia-writer-duo"
@@ -110,7 +111,7 @@
       "spotify"
       "zotero@beta"
     ];
-    taps = [ "homebrew/cask-fonts" ];
+    taps = [ "homebrew/cask-fonts" "finestructure/hummingbird" ];
     brews = [ ];
   };
 }
