@@ -1,4 +1,8 @@
-{ agenix, pkgs, ... }: {
+{
+  agenix,
+  pkgs,
+  ...
+}: {
   # here go the darwin preferences and config items
   imports = [
     ./secrets.nix
@@ -8,11 +12,11 @@
   programs.fish.enable = true;
   users.users.mw.shell = pkgs.fish;
   environment = {
-    shells = with pkgs; [ bash zsh fish ];
+    shells = with pkgs; [bash zsh fish];
     loginShell = pkgs.fish;
-    systemPackages = [ pkgs.coreutils agenix.packages.x86_64-darwin.default ];
-    systemPath = [ "/usr/local/bin"  ];
-    pathsToLink = [ "/Applications" ];
+    systemPackages = [pkgs.coreutils agenix.packages.x86_64-darwin.default];
+    systemPath = ["/usr/local/bin"];
+    pathsToLink = ["/Applications"];
   };
   nix.extraOptions = ''
     experimental-features = nix-command flakes
@@ -21,7 +25,7 @@
   # system.keyboard.remapCapsLockToEscape = true;
   fonts.fontDir.enable = true; # DANGER
   fonts.fonts = [
-    (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })
+    (pkgs.nerdfonts.override {fonts = ["Meslo"];})
   ];
   services.nix-daemon.enable = true;
   system.startup.chime = false;
@@ -56,16 +60,20 @@
       # https://web.archive.org/web/20130430100126/http://hintsforums.macworld.com/showthread.php?t=114785
       "com.apple.symbolichotkeys" = {
         AppleSymbolicHotKeys = {
-          "36" = {              # F11 - show desktop
+          "36" = {
+            # F11 - show desktop
             enabled = false;
           };
-          "60" = {              # C-Spc - prev input source
+          "60" = {
+            # C-Spc - prev input source
             enabled = false;
           };
-          "61" = {              # C-M-Spc - next input source
+          "61" = {
+            # C-M-Spc - next input source
             enabled = false;
           };
-          "64" = {              # Cmd-Spc - Spotlight
+          "64" = {
+            # Cmd-Spc - Spotlight
             enabled = false;
           };
         };
@@ -78,7 +86,7 @@
     enable = true;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
-    masApps = { };
+    masApps = {};
     casks = [
       "librewolf"
       "freeplane"
@@ -97,7 +105,7 @@
       "spotify"
       "espanso"
     ];
-    taps = [ ];
-    brews = [ ];
+    taps = [];
+    brews = [];
   };
 }

@@ -1,54 +1,61 @@
-{ pkgs, lib, ... }: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   # Don't change this when you change package input. Leave it alone.
   home.stateVersion = "23.11";
 
   # specify my home-manager configs
   home.packages = with pkgs; [
-    ripgrep
-    coreutils-prefixed
-    fd
-    findutils
-    curl
-    less
-    cmake
-    spicetify-cli
-    raycast
-    jq
-    alt-tab-macos
-    anki-bin
     # bruno # build fails
     # calibre # broken?
-    disk-inventory-x
-    iina
-    libreoffice-bin
-    transmission
-    gawk
+    alejandra
+    alt-tab-macos
+    anki-bin
     bash
     bitwarden-cli
     bottom
     broot
+    cmake
+    coreutils-prefixed
+    curl
+    disk-inventory-x
     dust
     duti
     eza
+    fd
+    findutils
+    gawk
+    gnugrep
+    gnumake
     gnupg
     gnuplot
     graphviz
-    gnugrep
     hledger
     httpie
+    iina
     imagemagick
+    jq
     ledger
-    gnumake
+    less
+    libreoffice-bin
     msmtp
     neovim
     net-news-wire
     ninja
+    nixfmt-classic
+    nixpkgs-fmt
     notmuch
     pandoc
+    raycast
+    ripgrep
     ripgrep-all
+    spicetify-cli
     tmux
-    tree
+    transmission
     tre-command
+    tree
     w3m
     wget
     yt-dlp
@@ -88,15 +95,18 @@
     fish = {
       enable = true;
       interactiveShellInit = ''
-      set fish_greeting # Disable greeting
-      set pure_enable_nixdevshell true
+        set fish_greeting # Disable greeting
+        set pure_enable_nixdevshell true
       '';
       loginShellInit = ''
       '';
       shellAliases = lib.mkForce {};
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs
-        { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+        {
+          name = "tide";
+          src = pkgs.fishPlugins.tide.src;
+        }
       ];
     };
 
