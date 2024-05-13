@@ -7,9 +7,7 @@
 }: let
   user = "mw";
 in {
-  age.identityPaths = [
-    "/Users/${user}/.ssh/id_ed25519"
-  ];
+  age.identityPaths = ["/Users/${user}/.ssh/id_ed25519"];
 
   # Your secrets go here
   #

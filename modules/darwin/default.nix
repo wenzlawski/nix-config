@@ -4,10 +4,7 @@
   ...
 }: {
   # here go the darwin preferences and config items
-  imports = [
-    ./secrets.nix
-    agenix.darwinModules.default
-  ];
+  imports = [./secrets.nix agenix.darwinModules.default];
   users.users.mw.home = "/Users/mw";
   programs.fish.enable = true;
   users.users.mw.shell = pkgs.fish;
@@ -24,9 +21,7 @@
   system.keyboard.enableKeyMapping = true;
   # system.keyboard.remapCapsLockToEscape = true;
   fonts.fontDir.enable = true; # DANGER
-  fonts.fonts = [
-    (pkgs.nerdfonts.override {fonts = ["Meslo"];})
-  ];
+  fonts.fonts = [(pkgs.nerdfonts.override {fonts = ["Meslo"];})];
   services.nix-daemon.enable = true;
   system.startup.chime = false;
   system.defaults = {

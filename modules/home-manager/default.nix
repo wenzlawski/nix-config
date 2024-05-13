@@ -88,9 +88,7 @@
       enable = true;
       enableBashIntegration = true; # see note on other shells below
       nix-direnv.enable = true;
-      config = {
-        hide_env_diff = true;
-      };
+      config = {hide_env_diff = true;};
     };
     fish = {
       enable = true;
@@ -98,8 +96,7 @@
         set fish_greeting # Disable greeting
         set pure_enable_nixdevshell true
       '';
-      loginShellInit = ''
-      '';
+      loginShellInit = "";
       shellAliases = lib.mkForce {};
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs
