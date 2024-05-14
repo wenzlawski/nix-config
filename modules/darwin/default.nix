@@ -88,6 +88,7 @@
     global.brewfile = true;
     masApps = { };
     casks = [
+      "bitwarden"
       "bruno"
       "calibre"
       "dozer"
@@ -118,7 +119,7 @@
       # "vmware-fusion" # download fails
       "zotero@beta"
     ];
-    taps = [ "homebrew/cask-fonts" "finestructure/hummingbird" ];
+    taps = [ "homebrew/cask-fonts" ];
     brews = [ ];
   };
 }
