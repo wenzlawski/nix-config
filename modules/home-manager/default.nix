@@ -56,6 +56,7 @@
     w3m
     wget
     yt-dlp
+    just
     zellij
     zoxide
     nix-your-shell
@@ -89,6 +90,7 @@
     direnv = {
       enable = true;
       enableBashIntegration = true; # see note on other shells below
+      enableZshIntegration = true;
       nix-direnv.enable = true;
       config = { hide_env_diff = true; };
     };
