@@ -75,7 +75,7 @@
       enable = true;
       userEmail = "marc.wenzlawski@outlook.de";
       userName = "Marc Wenzlawski";
-      ignores = [".DS_Store"];
+      ignores = [ ".DS_Store" ];
     };
     bat = {
       enable = true;
@@ -139,7 +139,7 @@
           collection-fontsrecommended
           latex-fonts
           courier
-        ;
+          ;
       };
     };
 
@@ -182,9 +182,9 @@
       notmuch.enable = true;
       signature = {
         text = ''
-            Mit besten Wuenschen
-            Marc Wenzlawski
-          '';
+          Mit besten Wuenschen
+          Marc Wenzlawski
+        '';
         showSignature = "append";
       };
       passwordCommand = "security find-generic-password -s mbsync-icloud-password -w";
