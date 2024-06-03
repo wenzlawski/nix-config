@@ -44,7 +44,7 @@
                 age-plugin-yubikey
               ];
               shellHook = with pkgs; ''
-                export EDITOR=vim
+                export EDITOR=emacs
               '';
             };
         };

@@ -33,11 +33,12 @@
     trackpad.FirstClickThreshold = 0;
     trackpad.SecondClickThreshold = 0;
     dock = {
-      orientation = "right";
       autohide = true;
       autohide-delay = 0.0;
       autohide-time-modifier = 0.4;
       expose-animation-duration = 0.5;
+      minimize-to-application = true;
+      orientation = "right";
       persistent-apps = null;
       show-recents = false;
       static-only = true;
@@ -97,6 +98,7 @@
       "finestructure/hummingbird/hummingbird"
       "font-fira-code"
       "font-hack"
+      "font-open-sans"
       "font-ia-writer-duo"
       "font-ia-writer-mono"
       "font-ia-writer-quattro"

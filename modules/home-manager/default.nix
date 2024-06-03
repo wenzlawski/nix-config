@@ -6,10 +6,10 @@
   home.packages = with pkgs; [
     # bruno # build fails
     # calibre # broken?
+    notmuch
     alejandra
     alt-tab-macos
     anki-bin
-    bash
     bitwarden-cli
     bottom
     broot
@@ -19,6 +19,7 @@
     disk-inventory-x
     dust
     duti
+    groff
     eza
     fd
     findutils
@@ -32,17 +33,16 @@
     httpie
     iina
     imagemagick
+    isync
     jq
     ledger
     less
     libreoffice-bin
-    msmtp
     neovim
     net-news-wire
     ninja
     nixfmt-classic
     nixpkgs-fmt
-    notmuch
     pandoc
     raycast
     ripgrep
@@ -51,12 +51,14 @@
     tmux
     transmission
     tre-command
+    ghostscript
     tree
     w3m
     wget
     yt-dlp
     zellij
     zoxide
+    nix-your-shell
   ];
   home.sessionVariables = {
     PAGER = "less";
@@ -65,6 +67,9 @@
   };
   editorconfig.enable = true;
   programs = {
+    bash.enable = true;
+    zsh.enable = true;
+
     eza.enable = true;
     git = {
       enable = true;
@@ -72,7 +77,6 @@
       userName = "Marc Wenzlawski";
       ignores = [".DS_Store"];
     };
-    zsh.enable = true;
     bat = {
       enable = true;
       config.theme = "TwoDark";
@@ -93,6 +97,10 @@
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
         set pure_enable_nixdevshell true
+        set -g NIX_BUILD_SHELL $SHELL
+        if command -q nix-your-shell
+          nix-your-shell fish | source
+        end
       '';
       loginShellInit = "";
       shellAliases = lib.mkForce { alejandra = "alejandra -q"; };
@@ -119,7 +127,90 @@
         };
       };
     };
+
+    texlive = {
+      enable = true;
+      extraPackages = tpkgs: {
+        inherit (tpkgs)
+          scheme-small
+          soul
+          lualatex-math
+          selnolig
+          collection-fontsrecommended
+          latex-fonts
+          courier
+        ;
+      };
+    };
+
+    notmuch = {
+      enable = true;
+      hooks.preNew = "/etc/profiles/per-user/mw/bin/mbsync -a";
+    };
+
+    mbsync.enable = true;
+    msmtp.enable = true;
   };
+  accounts.email = {
+    accounts.icloud = {
+      primary = true;
+      address = "marc.wenzlawski@icloud.com";
+      realName = "Marc Wenzlawski";
+      userName = "marc.wenzlawski@icloud.com";
+      # gpg = {
+      #   key = "";
+      #   signByDefault = true;
+      # };
+      imap = {
+        host = "imap.mail.me.com";
+        port = 993;
+        tls = {
+          enable = true;
+        };
+      };
+      smtp = {
+        host = "smtp.mail.me.com";
+        port = 587;
+        tls.enable = true;
+        tls.useStartTls = true;
+      };
+      mbsync = {
+        enable = true;
+        create = "maildir";
+      };
+      msmtp.enable = true;
+      notmuch.enable = true;
+      signature = {
+        text = ''
+            Mit besten Wuenschen
+            Marc Wenzlawski
+          '';
+        showSignature = "append";
+      };
+      passwordCommand = "security find-generic-password -s mbsync-icloud-password -w";
+    };
+
+    accounts.posteo = {
+      address = "marcwenzlawski@posteo.com";
+      realName = "Marc Wenzlawski";
+      userName = "marcwenzlawski@posteo.com";
+      imap = {
+        host = "posteo.de";
+        port = 993;
+      };
+      smtp = {
+        host = "posteo.de";
+      };
+      mbsync = {
+        enable = true;
+        create = "maildir";
+      };
+      msmtp.enable = true;
+      notmuch.enable = true;
+      passwordCommand = "security find-generic-password -s mbsync-posteo-password -w";
+    };
+  };
+
   home.file = {
     "functions" = {
       target = ".config/fish/functions";
