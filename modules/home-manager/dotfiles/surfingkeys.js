@@ -13,7 +13,7 @@ api.unmap('<ctrl-i>');
 settings.theme = `
 .sk_theme {
     font-family: Input Sans Condensed, Charcoal, sans-serif;
-    font-size: 10pt;
+    font-size: 18pt;
     background: #24272e;
     color: #abb2bf;
 }
