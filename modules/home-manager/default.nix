@@ -237,10 +237,10 @@
     #   target = ".config/fish/completions/direnv.fish";
     #   source = ./dotfiles/fish/completions/direnv.fish;
     # };
-    # "items" = {
-    #   target = "Library/Application Support/MTMR/items.json";
-    #   source = ./dotfiles/mtmr.json;
-    # };
+    "mtmr" = {
+      target = ".config/mtmr";
+      source = ./dotfiles/mtmr;
+    };
     "espanso" = {
       target = ".config/espanso";
       source = ./dotfiles/espanso;
