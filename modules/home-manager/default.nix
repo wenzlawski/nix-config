@@ -99,12 +99,12 @@
         set fish_greeting # Disable greeting
         set pure_enable_nixdevshell true
         set -g NIX_BUILD_SHELL $SHELL
+        set -g LUA_PATH '$HOME/.local/share/lua/?.lua;;'
         if command -q nix-your-shell
           nix-your-shell fish | source
         end
       '';
       loginShellInit = ''
-        set LUA_PATH $HOME/.local/share/lua/
       '';
       shellAliases = lib.mkForce { alejandra = "alejandra -q"; };
       plugins = [
@@ -261,9 +261,13 @@
       target = ".config/raycast/scripts";
       source = ./dotfiles/raycast;
     };
-    "share" = {
-      target = ".local/share";
-      source = ./share;
+    "share-pandoc" = {
+      target = ".local/share/pandoc";
+      source = ./share/pandoc;
+    };
+    "share-lua" = {
+      target = ".local/share/lua";
+      source = ./share/lua;
     };
   };
 
