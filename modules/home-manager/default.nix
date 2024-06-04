@@ -254,10 +254,6 @@
       target = ".config/raycast/scripts";
       source = ./dotfiles/raycast;
     };
-    "surfingkeys" = {
-      target = ".config/surfingkeys.js";
-      source = ./dotfiles/surfingkeys.js;
-    };
   };
 
   # programs.zsh.enableCompletion = true;
