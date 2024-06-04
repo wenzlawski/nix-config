@@ -43,7 +43,6 @@
     ninja
     nixfmt-classic
     nixpkgs-fmt
-    pandoc
     raycast
     ripgrep
     ripgrep-all
@@ -104,7 +103,9 @@
           nix-your-shell fish | source
         end
       '';
-      loginShellInit = "";
+      loginShellInit = ''
+        set LUA_PATH $HOME/.local/share/lua/
+      '';
       shellAliases = lib.mkForce { alejandra = "alejandra -q"; };
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs
@@ -113,6 +114,12 @@
           src = pkgs.fishPlugins.tide.src;
         }
       ];
+    };
+    pandoc = {
+      enable = true;
+      defaults = {
+        pdf-engine = "xelatex";
+      };
     };
 
     alacritty = {
@@ -253,6 +260,10 @@
     "raycast-scripts" = {
       target = ".config/raycast/scripts";
       source = ./dotfiles/raycast;
+    };
+    "pandoc" = {
+      target = ".local/share/pandoc";
+      source = ./share/pandoc;
     };
   };
 
