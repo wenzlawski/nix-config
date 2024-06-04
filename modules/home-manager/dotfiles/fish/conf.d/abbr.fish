@@ -19,6 +19,6 @@ abbr --add dotdot --regex '^\.\.+$' --function multicd
 abbr nf "nix flake"
 abbr ns "nix shell"
 abbr nst "nix store"
-abbr nd "nix develop -c $SHELL"
+abbr nd "nix develop"
 abbr nr "nix run"
 abbr nb "nix build"
