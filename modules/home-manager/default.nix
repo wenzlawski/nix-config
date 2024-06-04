@@ -99,7 +99,7 @@
         set fish_greeting # Disable greeting
         set pure_enable_nixdevshell true
         set -g NIX_BUILD_SHELL $SHELL
-        set -g LUA_PATH '$HOME/.local/share/lua/?.lua;;'
+        set -g LUA_PATH "$HOME/.local/share/lua/?.lua;;"
         if command -q nix-your-shell
           nix-your-shell fish | source
         end
@@ -239,7 +239,7 @@
     # };
     "items" = {
       target = "Library/Application Support/MTMR/items.json";
-      source = ./dotfiles/mtmr.json;
+      source = ./dotfiles/mtmr2.json;
     };
     "espanso" = {
       target = ".config/espanso";

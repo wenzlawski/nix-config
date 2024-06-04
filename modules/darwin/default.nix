@@ -13,6 +13,9 @@
     systemPackages = [ pkgs.coreutils agenix.packages.x86_64-darwin.default ];
     systemPath = [ "/usr/local/bin" ];
     pathsToLink = [ "/Applications" ];
+    variables = {
+
+    };
   };
   nix.extraOptions = ''
     experimental-features = nix-command flakes
@@ -77,6 +80,14 @@
             # Cmd-M-Spc - Show finder
             enabled = false;
           };
+          "79" = {
+            # C-Left - Space left
+            enabled = true;
+          };
+          "81" = {
+            # C-Right - Space right
+            enabled = true;
+          };
         };
       };
     };
@@ -113,6 +124,7 @@
       "librewolf"
       "linearmouse"
       "mtmr"
+      "monitorcontrol"
       "notunes"
       "qlcolorcode"
       "qlmarkdown"
