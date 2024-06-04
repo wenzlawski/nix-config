@@ -261,9 +261,9 @@
       target = ".config/raycast/scripts";
       source = ./dotfiles/raycast;
     };
-    "pandoc" = {
-      target = ".local/share/pandoc";
-      source = ./share/pandoc;
+    "share" = {
+      target = ".local/share";
+      source = ./share;
     };
   };
 
