@@ -1,19 +1,38 @@
-// an example to create a new mapping `ctrl-y`
-api.mapkey('<ctrl-y>', 'Show me the money', function() {
-    Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
-});
+api.unmap('ob');    // I don't need the omnibar search feature,
+api.unmap('od');    // and I want to use the `o` key ...
+api.unmap('og');
+api.unmap('oh');
+api.unmap('oi');
+api.unmap('om');
+api.unmap('on');
+api.unmap('ow');
+api.unmap('ox');
+api.unmap('oy');
 
-// an example to replace `T` with `gt`, click `Default mappings` to see how `T` works.
-api.map('gt', 'T');
+api.map('o', 'f');      // Typical link jumping
+api.map('ao', 'af');    // Open link in a new, focused tab
+api.map('go', 'gf');    // Open link in a new, non-focused tab
+api.map('co', 'cf');    // Open multiple links... I don't use this
 
-// an example to remove mapkey `Ctrl-i`
-api.unmap('<ctrl-i>');
+settings.aceKeybindings = "vim";
 
-// set theme
+api.Hints.style("             \
+ text-align: center;          \
+ vertical-align: middle;      \
+ border: 2px solid #303030;   \
+ border-radius: 25%;          \
+ padding: .2%;                 \
+ background: #FFBC2E;         \
+ color: #000000;              \
+ font-size:10pt;              \
+ font-family: Input Sans Condensed, Charcoal, sans-serif;",
+  "hint"
+);
+
 settings.theme = `
 .sk_theme {
     font-family: Input Sans Condensed, Charcoal, sans-serif;
-    font-size: 18pt;
+    font-size: 11pt;
     background: #24272e;
     color: #abb2bf;
 }
@@ -45,6 +64,6 @@ settings.theme = `
     background: #3e4452;
 }
 #sk_status, #sk_find {
-    font-size: 20pt;
+    font-size: 14pt;
 }`;
 // click `Save` button to make above settings to take effect.</ctrl-i></ctrl-y>
