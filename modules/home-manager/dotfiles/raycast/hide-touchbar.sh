@@ -12,11 +12,11 @@ MTMR_LOC=~/Library/Application\ Support/MTMR/items.json
 
 VAR1=$(cat "$MTMR_LOC")
 
-unlink "$MTMR_LOC"
-
 if [ "$VAR1" = "[]" ]; then
+    rm "$MTMR_LOC"
     ln -s ~/.config/mtmr/items.json "$MTMR_LOC"
 else
+    unlink "$MTMR_LOC"
     echo "[]" > "$MTMR_LOC"
 fi
 

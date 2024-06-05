@@ -104,8 +104,7 @@
           nix-your-shell fish | source
         end
       '';
-      loginShellInit = ''
-      '';
+      loginShellInit = "";
       shellAliases = lib.mkForce { alejandra = "alejandra -q"; };
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs
@@ -117,9 +116,7 @@
     };
     pandoc = {
       enable = true;
-      defaults = {
-        pdf-engine = "xelatex";
-      };
+      defaults = { pdf-engine = "xelatex"; };
     };
 
     alacritty = {
@@ -141,14 +138,8 @@
       enable = true;
       extraPackages = tpkgs: {
         inherit (tpkgs)
-          scheme-small
-          soul
-          lualatex-math
-          selnolig
-          collection-fontsrecommended
-          latex-fonts
-          courier
-          ;
+          scheme-small soul lualatex-math selnolig collection-fontsrecommended
+          latex-fonts courier;
       };
     };
 
@@ -173,9 +164,7 @@
       imap = {
         host = "imap.mail.me.com";
         port = 993;
-        tls = {
-          enable = true;
-        };
+        tls = { enable = true; };
       };
       smtp = {
         host = "smtp.mail.me.com";
@@ -196,7 +185,8 @@
         '';
         showSignature = "append";
       };
-      passwordCommand = "security find-generic-password -s mbsync-icloud-password -w";
+      passwordCommand =
+        "security find-generic-password -s mbsync-icloud-password -w";
     };
 
     accounts.posteo = {
@@ -207,16 +197,15 @@
         host = "posteo.de";
         port = 993;
       };
-      smtp = {
-        host = "posteo.de";
-      };
+      smtp = { host = "posteo.de"; };
       mbsync = {
         enable = true;
         create = "maildir";
       };
       msmtp.enable = true;
       notmuch.enable = true;
-      passwordCommand = "security find-generic-password -s mbsync-posteo-password -w";
+      passwordCommand =
+        "security find-generic-password -s mbsync-posteo-password -w";
     };
   };
 

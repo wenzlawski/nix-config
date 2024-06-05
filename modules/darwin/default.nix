@@ -10,9 +10,7 @@
     systemPackages = [ pkgs.coreutils agenix.packages.x86_64-darwin.default ];
     systemPath = [ "/usr/local/bin" ];
     pathsToLink = [ "/Applications" ];
-    variables = {
-
-    };
+    variables = { };
   };
   nix.extraOptions = ''
     experimental-features = nix-command flakes
@@ -26,8 +24,10 @@
   system.defaults = {
     finder = {
       AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
       _FXShowPosixPathInTitle = true;
       ShowPathbar = true;
+      FXPreferredViewStyle = "Nlsv";
     };
     NSGlobalDomain = {
       AppleShowAllExtensions = true;
