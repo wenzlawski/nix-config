@@ -1,7 +1,4 @@
-{ agenix
-, pkgs
-, ...
-}: {
+{ agenix, pkgs, ... }: {
   # here go the darwin preferences and config items
   imports = [ ./secrets.nix agenix.darwinModules.default ];
   users.users.mw.home = "/Users/mw";
@@ -27,12 +24,18 @@
   services.nix-daemon.enable = true;
   system.startup.chime = false;
   system.defaults = {
-    finder.AppleShowAllExtensions = true;
-    finder._FXShowPosixPathInTitle = true;
-    NSGlobalDomain.AppleShowAllExtensions = true;
-    NSGlobalDomain.InitialKeyRepeat = 14;
-    NSGlobalDomain.KeyRepeat = 1;
-    NSGlobalDomain."com.apple.trackpad.scaling" = 1.5;
+    finder = {
+      AppleShowAllExtensions = true;
+      _FXShowPosixPathInTitle = true;
+      ShowPathbar = true;
+    };
+    NSGlobalDomain = {
+      AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
+      InitialKeyRepeat = 14;
+      KeyRepeat = 1;
+      "com.apple.trackpad.scaling" = 1.5;
+    };
     trackpad.FirstClickThreshold = 0;
     trackpad.SecondClickThreshold = 0;
     dock = {
@@ -45,7 +48,7 @@
       persistent-apps = null;
       show-recents = false;
       static-only = true;
-      tilesize = 48;
+      tilesize = 12;
     };
     CustomUserPreferences = {
       "com.apple.screencapture" = {
