@@ -126,6 +126,7 @@
       "hammerspoon"
       "librewolf"
       "linearmouse"
+      "logi-options-plus"
       "mtmr"
       "monitorcontrol"
       "notunes"
