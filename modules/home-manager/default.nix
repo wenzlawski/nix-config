@@ -230,9 +230,17 @@
       target = ".config/mtmr";
       source = ./dotfiles/mtmr;
     };
-    "espanso" = {
-      target = ".config/espanso";
-      source = ./dotfiles/espanso;
+    "espanso-config" = {
+      target = ".config/espanso/config/default.yml";
+      source = ./dotfiles/espanso/config/default.yml;
+    };
+    "espanso-match-base" = {
+      target = ".config/espanso/match/base.yml";
+      source = ./dotfiles/espanso/match/base.yml;
+    };
+    "espanso-match-english" = {
+      target = ".config/espanso/match/english.yml";
+      source = ./dotfiles/espanso/match/english.yml;
     };
     "karabiner" = {
       target = ".config/karabiner";
