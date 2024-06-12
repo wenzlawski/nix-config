@@ -59,6 +59,9 @@
     zellij
     zoxide
     nix-your-shell
+    nodePackages.prettier
+    pdftk
+    poppler_utils
   ];
   home.sessionVariables = {
     PAGER = "less";
