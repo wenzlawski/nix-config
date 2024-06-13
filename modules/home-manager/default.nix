@@ -273,6 +273,10 @@
       target = ".config/yabai/yabairc";
       source = ./dotfiles/yabairc;
     };
+    "skhdrc" = {
+      target = ".config/yabai/yabairc";
+      source = ./dotfiles/skhdrc;
+    };
   };
 
   # programs.zsh.enableCompletion = true;
