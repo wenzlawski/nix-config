@@ -269,6 +269,10 @@
       target = ".local/share/lua";
       source = ./share/lua;
     };
+    "yabairc" = {
+      target = ".config/yabai/yabairc";
+      source = ./dotfiles/yabairc;
+    };
   };
 
   # programs.zsh.enableCompletion = true;

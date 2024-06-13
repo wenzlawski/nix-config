@@ -36,9 +36,14 @@
       InitialKeyRepeat = 14;
       KeyRepeat = 1;
       "com.apple.trackpad.scaling" = 1.5;
+      AppleEnableSwipeNavigateWithScrolls = true;
     };
-    trackpad.FirstClickThreshold = 0;
-    trackpad.SecondClickThreshold = 0;
+    trackpad = {
+      FirstClickThreshold = 0;
+      SecondClickThreshold = 0;
+      ActuationStrength = 0;
+      Clicking = true;
+    };
     dock = {
       autohide = true;
       autohide-delay = 0.0;
@@ -141,6 +146,8 @@
       "zotero@beta"
     ];
     taps = [ "homebrew/cask-fonts" ];
-    brews = [ ];
+    brews = [
+      "koekeishiya/formulae/yabai"
+    ];
   };
 }
