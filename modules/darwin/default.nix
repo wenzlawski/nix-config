@@ -20,9 +20,9 @@
   # system.keyboard.remapCapsLockToEscape = true;
   fonts.fontDir.enable = true; # DANGER
   fonts.fonts = [ (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; }) ];
-  security.sudo.extraConfig = ''
-    mw ALL=(root) NOPASSWD: sha256:1042a454424c6255dfa89286fe0bde05a2416887bda6dad7e84f615ba2e8a499 /usr/local/bin/yabai --load-sa
-  '';
+  # security.sudo.extraConfig = ''
+  #   mw ALL=(root) NOPASSWD: sha256:1042a454424c6255dfa89286fe0bde05a2416887bda6dad7e84f615ba2e8a499 /usr/local/bin/yabai --load-sa
+  # '';
   services.nix-daemon.enable = true;
   system.startup.chime = false;
   system.defaults = {
@@ -94,11 +94,19 @@
           };
           "79" = {
             # C-Left - Space left
-            enabled = true;
+            enabled = false;
           };
           "81" = {
             # C-Right - Space right
-            enabled = true;
+            enabled = false;
+          };
+          "83" = {
+            # C-Down - Win show
+            enabled = false;
+          };
+          "85" = {
+            # C-Up - Space show
+            enabled = false;
           };
         };
       };
@@ -106,6 +114,58 @@
   };
   # backwards compat; don't change
   system.stateVersion = 4;
+
+  services = {
+    skhd = {
+      enable = true;
+      skhdConfig = ''
+        ctrl - up: yabai -m window --focus $(yabai -m query --windows --space | jq '.[].id' | sed -n '2p')
+        ctrl - right : yabai -m space --focus next
+        ctrl - left : yabai -m space --focus prev
+        ctrl - down: yabai -m space --focus recent
+      '';
+    };
+
+    yabai = {
+      enable = true;
+      enableScriptingAddition = true;
+      config = {
+        external_bar = "off:40:0";
+        menubar_opacity = 1.0;
+        mouse_follows_focus = "off";
+        focus_follows_mouse = "off";
+        display_arrangement_order = "default";
+        window_origin_display = "default";
+        window_placement = "second_child";
+        window_zoom_persist = "on";
+        window_shadow = "on";
+        window_animation_duration = 0.0;
+        window_animation_easing = "ease_out_circ";
+        window_opacity_duration = 0.0;
+        active_window_opacity = 1.0;
+        normal_window_opacity = 0.90;
+        window_opacity = "off";
+        insert_feedback_color = "0xffd75f5f";
+        split_ratio = 0.50;
+        split_type = "auto";
+        auto_balance = "off";
+        top_padding = 0;
+        bottom_padding = 0;
+        left_padding = 0;
+        right_padding = 0;
+        window_gap = 2;
+        layout = "float";
+        mouse_modifier = "fn";
+        mouse_action1 = "move";
+        mouse_action2 = "resize";
+        mouse_drop_action = "swap";
+      };
+      extraConfig = ''
+        
+      '';
+    };
+  };
+
   homebrew = {
     enable = true;
     caskArgs.no_quarantine = true;
@@ -117,13 +177,11 @@
       "bitwarden"
       "bruno"
       "calibre"
-      "dozer"
       "dropbox"
       "espanso"
       "finestructure/hummingbird/hummingbird"
       "font-fira-code"
       "font-hack"
-      "font-open-sans"
       "font-ia-writer-duo"
       "font-ia-writer-mono"
       "font-ia-writer-quattro"
@@ -132,26 +190,26 @@
       "font-iosevka-nerd-font"
       "font-iosevka-term-nerd-font"
       "font-jetbrains-mono"
+      "font-open-sans"
       "font-source-code-pro"
       "freeplane"
       "hammerspoon"
+      "hiddenbar"
       "librewolf"
       "linearmouse"
       "logi-options-plus"
-      "mtmr"
       "monitorcontrol"
+      "mtmr"
       "notunes"
       "qlcolorcode"
       "qlmarkdown"
       "qlstephen"
       "spotify"
-      # "vmware-fusion" # download fails
       "zotero@beta"
+      # "vmware-fusion" # download fails
     ];
     taps = [ "homebrew/cask-fonts" ];
     brews = [
-      "koekeishiya/formulae/yabai"
-      "koekeishiya/formulae/skhd"
     ];
   };
 }
