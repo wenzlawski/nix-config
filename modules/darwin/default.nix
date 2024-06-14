@@ -143,10 +143,10 @@
         window_animation_easing = "ease_out_circ";
         window_opacity_duration = 0.0;
         active_window_opacity = 1.0;
-        normal_window_opacity = 0.90;
+        normal_window_opacity = 0.9;
         window_opacity = "off";
         insert_feedback_color = "0xffd75f5f";
-        split_ratio = 0.50;
+        split_ratio = 0.5;
         split_type = "auto";
         auto_balance = "off";
         top_padding = 0;
@@ -160,9 +160,7 @@
         mouse_action2 = "resize";
         mouse_drop_action = "swap";
       };
-      extraConfig = ''
-        
-      '';
+      extraConfig = "\n";
     };
   };
 
@@ -170,9 +168,7 @@
     enable = true;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
-    masApps = {
-      QuickShade = 931571202;
-    };
+    masApps = { QuickShade = 931571202; };
     casks = [
       "bitwarden"
       "bruno"
@@ -192,6 +188,8 @@
       "font-jetbrains-mono"
       "font-open-sans"
       "font-source-code-pro"
+      "font-et-book"
+      "font-eb-garamond"
       "freeplane"
       "hammerspoon"
       "hiddenbar"
@@ -209,7 +207,6 @@
       # "vmware-fusion" # download fails
     ];
     taps = [ "homebrew/cask-fonts" ];
-    brews = [
-    ];
+    brews = [ ];
   };
 }

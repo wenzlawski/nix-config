@@ -8,4 +8,4 @@
 # Optional parameters:
 # @raycast.icon 🤖
 
-emacsclient -ne "(my/make-ai-frame)"
+emacsclient -ne "(my/focus-or-make-ai-frame)"

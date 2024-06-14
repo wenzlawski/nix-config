@@ -27,6 +27,7 @@
     gnugrep
     gnumake
     gnupg
+    silver-searcher
     gnuplot
     graphviz
     hledger
@@ -142,7 +143,7 @@
       extraPackages = tpkgs: {
         inherit (tpkgs)
           scheme-small soul lualatex-math selnolig collection-fontsrecommended
-          latex-fonts courier;
+          latex-fonts courier microtype parskip;
       };
     };
 

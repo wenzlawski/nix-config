@@ -1,0 +1,14 @@
+from: epub
+to: pdf
+output-file: out.pdf
+pdf-engine: xelatex
+variables:
+  mainfont: "EB Garamond"
+  geometry: "left=74pt,right=74pt,top=32pt,bottom=42pt"
+  papersize: a4
+  indent: true
+  header-includes:
+    - \usepackage{setspace}
+    - \doublespacing
+  mainfontoptions:
+    - Scale=1.8
