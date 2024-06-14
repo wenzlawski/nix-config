@@ -257,6 +257,10 @@
       target = "Library/Keyboard Layouts/Colemak_DH.bundle";
       source = ./dotfiles/Colemak_DH.bundle;
     };
+    "defaultkeybinding" = {
+      target = "Library/KeyBindings/DefaultKeyBinding.dict";
+      source = ./dotfiles/DefaultKeyBinding.dict;
+    };
     "raycast-scripts" = {
       target = ".config/raycast/scripts";
       source = ./dotfiles/raycast;

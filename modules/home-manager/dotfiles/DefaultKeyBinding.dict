@@ -1,0 +1,1 @@
+"^\U007F"   = "deleteWordBackward:";            /* C-DEL        Delete word backward */
