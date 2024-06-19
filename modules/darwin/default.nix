@@ -40,6 +40,7 @@
       KeyRepeat = 1;
       "com.apple.trackpad.scaling" = 1.5;
       AppleEnableSwipeNavigateWithScrolls = true;
+      AppleInterfaceStyleSwitchesAutomatically = true;
     };
     trackpad = {
       FirstClickThreshold = 0;
@@ -168,7 +169,10 @@
     enable = true;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
-    masApps = { QuickShade = 931571202; };
+    masApps = {
+      QuickShade = 931571202;
+      Image2icon = 992115977;
+    };
     casks = [
       "bitwarden"
       "bruno"
@@ -197,6 +201,7 @@
       "linearmouse"
       "logi-options-plus"
       "monitorcontrol"
+      "betterdisplay"
       "mtmr"
       "notunes"
       "qlcolorcode"

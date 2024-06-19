@@ -1,4 +1,6 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+let sbcl' = pkgs.sbcl.withPackages (ps: [ ps.clhs ]);
+in {
   # Don't change this when you change package input. Leave it alone.
   home.stateVersion = "23.11";
 
@@ -16,6 +18,7 @@
     cmake
     coreutils-prefixed
     curl
+    tectonic
     disk-inventory-x
     dust
     duti
@@ -63,6 +66,7 @@
     nodePackages.prettier
     pdftk
     poppler_utils
+    sbclPackages.clhs
   ];
   home.sessionVariables = {
     PAGER = "less";
@@ -143,7 +147,7 @@
       extraPackages = tpkgs: {
         inherit (tpkgs)
           scheme-small soul lualatex-math selnolig collection-fontsrecommended
-          latex-fonts courier microtype parskip;
+          latex-fonts courier microtype parskip graphics;
       };
     };
 
