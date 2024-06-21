@@ -18,8 +18,7 @@
   '';
   system.keyboard.enableKeyMapping = true;
   # system.keyboard.remapCapsLockToEscape = true;
-  fonts.fontDir.enable = true; # DANGER
-  fonts.fonts = [ (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; }) ];
+  fonts.packages = [ (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; }) ];
   # security.sudo.extraConfig = ''
   #   mw ALL=(root) NOPASSWD: sha256:1042a454424c6255dfa89286fe0bde05a2416887bda6dad7e84f615ba2e8a499 /usr/local/bin/yabai --load-sa
   # '';
