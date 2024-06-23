@@ -169,6 +169,20 @@
     };
   };
 
+  launchd.user.agents.borg.serviceConfig = {
+    Label = "mw.borgbackup-remote";
+    ProgramArguments = ["$HOME/.local/bin/borg_backup.sh"];
+    StandardErrorPath = "/tmp/borg_mw.err.log";
+    StandardOutPath = "/tmp/borg_mw.out.log";
+    RunAtLoad = true;
+    StartCalendarInterval = [
+      {
+        Hour = 20;
+        Minute = 0;
+      }
+    ];
+  };
+
   homebrew = {
     enable = false;
     caskArgs.no_quarantine = true;

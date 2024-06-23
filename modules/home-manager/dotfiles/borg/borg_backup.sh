@@ -24,7 +24,6 @@ info "====== Starting Backup: $(date) ======"
 # run-parts /etc/borg_backup.d/preexec/
 
 borg create \
-	--dry-run --verbose \
 	--list --filter=AME \
 	--stats --show-rc \
 	--compression auto,lzma,6 \
@@ -32,8 +31,9 @@ borg create \
 	-e"*/.DS_Store" \
 	-e"*/.cache" \
 	-e"*/cache" \
-	-e".emacs.d/straight" \
-	-e".emacs.d/eln-cache" \
+	-e"*/__pycache__" \
+	-e"Users/mw/.emacs.d/straight" \
+	-e"Users/mw/.emacs.d/eln-cache" \
 	$REPOSITORY::"{$BACKUP_TIMESTAMP}" \
 	/Users/mw/.ssh \
 	/Users/mw/.config \
