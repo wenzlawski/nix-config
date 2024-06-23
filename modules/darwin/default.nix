@@ -169,7 +169,7 @@
   };
 
   homebrew = {
-    enable = true;
+    enable = false;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     masApps = {
