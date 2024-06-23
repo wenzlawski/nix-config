@@ -1,24 +1,28 @@
-{ agenix, pkgs, ... }: {
+{
+  agenix,
+  pkgs,
+  ...
+}: {
   # here go the darwin preferences and config items
-  imports = [ ./secrets.nix agenix.darwinModules.default ];
+  imports = [./secrets.nix agenix.darwinModules.default];
   users.users.mw.home = "/Users/mw";
   programs.zsh.enable = true;
   programs.fish.enable = true;
   users.users.mw.shell = pkgs.zsh;
   environment = {
-    shells = with pkgs; [ bash zsh fish ];
+    shells = with pkgs; [bash zsh fish];
     loginShell = pkgs.zsh;
-    systemPackages = [ pkgs.coreutils agenix.packages.x86_64-darwin.default ];
-    systemPath = [ "/usr/local/bin" ];
-    pathsToLink = [ "/Applications" ];
-    variables = { };
+    systemPackages = [pkgs.coreutils agenix.packages.x86_64-darwin.default];
+    systemPath = ["/usr/local/bin"];
+    pathsToLink = ["/Applications"];
+    variables = {};
   };
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
   system.keyboard.enableKeyMapping = true;
   # system.keyboard.remapCapsLockToEscape = true;
-  fonts.packages = [ (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; }) ];
+  fonts.packages = [(pkgs.nerdfonts.override {fonts = ["Meslo"];})];
   # security.sudo.extraConfig = ''
   #   mw ALL=(root) NOPASSWD: sha256:1042a454424c6255dfa89286fe0bde05a2416887bda6dad7e84f615ba2e8a499 /usr/local/bin/yabai --load-sa
   # '';
@@ -210,7 +214,20 @@
       "zotero@beta"
       # "vmware-fusion" # download fails
     ];
-    taps = [ "homebrew/cask-fonts" ];
-    brews = [ ];
+    taps = ["homebrew/cask-fonts" "d12frosted/emacs-plus"];
+    brews = [
+      {
+        name = "d12frosted/emacs-plus@30";
+        args = [
+          "--with-dbus"
+          "--with-mailutils"
+          "--with-no-frame-refocus"
+          "--with-xwidgets"
+          "--with-native-comp"
+          "--with-poll"
+          "--with-modern-black-gnu-head-icon"
+        ];
+      }
+    ];
   };
 }
