@@ -62,6 +62,7 @@
       show-recents = false;
       static-only = true;
       tilesize = 12;
+      wvous-br-corner = 1;
     };
     CustomUserPreferences = {
       "com.apple.screencapture" = {
@@ -177,12 +178,15 @@
       Image2icon = 992115977;
     };
     casks = [
+      "betterdisplay"
       "bitwarden"
       "bruno"
       "calibre"
       "dropbox"
       "espanso"
       "finestructure/hummingbird/hummingbird"
+      "font-eb-garamond"
+      "font-et-book"
       "font-fira-code"
       "font-hack"
       "font-ia-writer-duo"
@@ -195,8 +199,6 @@
       "font-jetbrains-mono"
       "font-open-sans"
       "font-source-code-pro"
-      "font-et-book"
-      "font-eb-garamond"
       "freeplane"
       "hammerspoon"
       "hiddenbar"
@@ -204,7 +206,6 @@
       "linearmouse"
       "logi-options-plus"
       "monitorcontrol"
-      "betterdisplay"
       "mtmr"
       "notunes"
       "qlcolorcode"
@@ -212,6 +213,7 @@
       "qlstephen"
       "spotify"
       "zotero@beta"
+      "macfuse"
       # "vmware-fusion" # download fails
     ];
     taps = ["homebrew/cask-fonts" "d12frosted/emacs-plus"];
@@ -228,6 +230,7 @@
           "--with-modern-black-gnu-head-icon"
         ];
       }
+      "borgbackup/tap/borgbackup-fuse"
     ];
   };
 }

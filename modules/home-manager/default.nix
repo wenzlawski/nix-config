@@ -1,5 +1,9 @@
-{ pkgs, lib, ... }:
-let sbcl' = pkgs.sbcl.withPackages (ps: [ ps.clhs ]);
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  sbcl' = pkgs.sbcl.withPackages (ps: [ps.clhs]);
 in {
   # Don't change this when you change package input. Leave it alone.
   home.stateVersion = "23.11";
@@ -8,65 +12,66 @@ in {
   home.packages = with pkgs; [
     # bruno # build fails
     # calibre # broken?
-    notmuch
     alejandra
     alt-tab-macos
     anki-bin
     bitwarden-cli
+    shfmt
     bottom
     broot
     cmake
     coreutils-prefixed
     curl
-    tectonic
     disk-inventory-x
     dust
     duti
-    groff
     eza
     fd
     findutils
     gawk
+    ghostscript
     gnugrep
     gnumake
     gnupg
-    silver-searcher
     gnuplot
     graphviz
+    groff
     hledger
     httpie
     iina
     imagemagick
     isync
     jq
+    just
     ledger
     less
     libreoffice-bin
     neovim
     net-news-wire
     ninja
+    nix-your-shell
     nixfmt-classic
     nixpkgs-fmt
+    nodePackages.prettier
+    notmuch
+    pdftk
+    poppler_utils
     raycast
     ripgrep
     ripgrep-all
+    sbclPackages.clhs
+    silver-searcher
     spicetify-cli
+    tectonic
     tmux
     transmission
     tre-command
-    ghostscript
     tree
     w3m
     wget
     yt-dlp
-    just
     zellij
     zoxide
-    nix-your-shell
-    nodePackages.prettier
-    pdftk
-    poppler_utils
-    sbclPackages.clhs
   ];
   home.sessionVariables = {
     PAGER = "less";
@@ -83,7 +88,7 @@ in {
       enable = true;
       userEmail = "marc.wenzlawski@outlook.de";
       userName = "Marc Wenzlawski";
-      ignores = [ ".DS_Store" ];
+      ignores = [".DS_Store"];
     };
     bat = {
       enable = true;
@@ -99,7 +104,7 @@ in {
       enableBashIntegration = true; # see note on other shells below
       enableZshIntegration = true;
       nix-direnv.enable = true;
-      config = { hide_env_diff = true; };
+      config = {hide_env_diff = true;};
     };
     fish = {
       enable = true;
@@ -113,7 +118,7 @@ in {
         end
       '';
       loginShellInit = "";
-      shellAliases = lib.mkForce { alejandra = "alejandra -q"; };
+      shellAliases = lib.mkForce {alejandra = "alejandra -q";};
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs
         {
@@ -124,7 +129,7 @@ in {
     };
     pandoc = {
       enable = true;
-      defaults = { pdf-engine = "xelatex"; };
+      defaults = {pdf-engine = "xelatex";};
     };
 
     alacritty = {
@@ -145,9 +150,19 @@ in {
     texlive = {
       enable = true;
       extraPackages = tpkgs: {
-        inherit (tpkgs)
-          scheme-small soul lualatex-math selnolig collection-fontsrecommended
-          latex-fonts courier microtype parskip graphics;
+        inherit
+          (tpkgs)
+          scheme-small
+          soul
+          lualatex-math
+          selnolig
+          collection-fontsrecommended
+          latex-fonts
+          courier
+          microtype
+          parskip
+          graphics
+          ;
       };
     };
 
@@ -158,7 +173,39 @@ in {
 
     mbsync.enable = true;
     msmtp.enable = true;
+
+    # borgmatic = {
+    #   enable = true;
+    #   backups = {
+    #     personal = {
+    #       location = {
+    #         sourceDirectories = ["/Users/mw/.config"];
+    #         repositories = ["ssh://u411549@u411549.your-storagebox.de/./personal-repo"];
+    #       };
+    #       storage.encryptionPasscommand = "security find-generic-password -s borg-repo -w";
+    #       consistency.checks = [
+    #         {
+    #           name = "repository";
+    #           frequency = "2 weeks";
+    #         }
+    #         {
+    #           name = "archives";
+    #           frequency = "4 weeks";
+    #         }
+    #         {
+    #           name = "data";
+    #           frequency = "6 weeks";
+    #         }
+    #         {
+    #           name = "extract";
+    #           frequency = "6 weeks";
+    #         }
+    #       ];
+    #     };
+    #   };
+    # };
   };
+
   accounts.email = {
     accounts.icloud = {
       primary = true;
@@ -172,7 +219,7 @@ in {
       imap = {
         host = "imap.mail.me.com";
         port = 993;
-        tls = { enable = true; };
+        tls = {enable = true;};
       };
       smtp = {
         host = "smtp.mail.me.com";
@@ -193,8 +240,7 @@ in {
         '';
         showSignature = "append";
       };
-      passwordCommand =
-        "security find-generic-password -s mbsync-icloud-password -w";
+      passwordCommand = "security find-generic-password -s mbsync-icloud-password -w";
     };
 
     accounts.posteo = {
@@ -205,15 +251,14 @@ in {
         host = "posteo.de";
         port = 993;
       };
-      smtp = { host = "posteo.de"; };
+      smtp = {host = "posteo.de";};
       mbsync = {
         enable = true;
         create = "maildir";
       };
       msmtp.enable = true;
       notmuch.enable = true;
-      passwordCommand =
-        "security find-generic-password -s mbsync-posteo-password -w";
+      passwordCommand = "security find-generic-password -s mbsync-posteo-password -w";
     };
   };
 
@@ -277,6 +322,10 @@ in {
     "share-lua" = {
       target = ".local/share/lua";
       source = ./share/lua;
+    };
+    "borg" = {
+      target = ".local/bin";
+      source = ./dotfiles/borg;
     };
     # "yabairc" = {
     #   target = ".config/yabai/yabairc";
