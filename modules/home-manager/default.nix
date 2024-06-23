@@ -73,11 +73,17 @@ in {
     zellij
     zoxide
   ];
+
   home.sessionVariables = {
     PAGER = "less";
     CLICLOLOR = 1;
     EDITOR = "emacs";
   };
+
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
+
   editorconfig.enable = true;
   programs = {
     bash.enable = true;
@@ -326,6 +332,7 @@ in {
     "borg" = {
       target = ".local/bin";
       source = ./dotfiles/borg;
+      executable = true;
     };
     # "yabairc" = {
     #   target = ".config/yabai/yabairc";
