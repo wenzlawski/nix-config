@@ -169,18 +169,35 @@
     };
   };
 
-  launchd.user.agents.borg.serviceConfig = {
-    Label = "mw.borgbackup-remote";
-    ProgramArguments = ["$HOME/.local/bin/borg_backup.sh"];
-    StandardErrorPath = "/tmp/borg_mw.err.log";
-    StandardOutPath = "/tmp/borg_mw.out.log";
-    RunAtLoad = true;
-    StartCalendarInterval = [
-      {
-        Hour = 20;
-        Minute = 0;
-      }
-    ];
+  launchd.user.agents = {
+    notmuch.serviceConfig = {
+      Label = "mw.notmuch-email";
+      ProgramArguments = [
+        "/etc/profiles/per-user/mw/bin/notmuch"
+        "new"
+      ];
+      StandardErrorPath = "/tmp/notmuch_mw.err.log";
+      StandardOutPath = "/tmp/notmuch_mw.out.log";
+      RunAtLoad = true;
+      StartCalendarInterval = [
+        {
+          Minute = 5;
+        }
+      ];
+    };
+    borg.serviceConfig = {
+      Label = "mw.borgbackup-remote";
+      ProgramArguments = ["$HOME/.local/bin/borg_backup.sh"];
+      StandardErrorPath = "/tmp/borg_mw.err.log";
+      StandardOutPath = "/tmp/borg_mw.out.log";
+      RunAtLoad = true;
+      StartCalendarInterval = [
+        {
+          Hour = 23;
+          Minute = 59;
+        }
+      ];
+    };
   };
 
   homebrew = {

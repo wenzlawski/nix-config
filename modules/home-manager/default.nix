@@ -359,10 +359,11 @@ in {
       target = ".local/share/lua";
       source = ./share/lua;
     };
-    "borg" = {
+    "scripts" = {
       target = ".local/bin";
-      source = ./dotfiles/borg;
+      source = ./scripts;
       executable = true;
+      recursive = true;
     };
     # "yabairc" = {
     #   target = ".config/yabai/yabairc";
