@@ -305,18 +305,18 @@ send_queued_mail() {   # <-- mail id
 		[ "$EMAIL_CONN_TEST" != 'x' ] &&
 			[ -z "$EMAIL_CONN_NOTEST" ] && { # do connection test
 			connect_test || {
-				log "mail [ $2 ] [ $1 ] from queue ; couldn't be sent - host not connected"
+				# log "mail [ $2 ] [ $1 ] from queue ; couldn't be sent - host not connected"
 				return
 			}
 		}
 
 		if "/nix/store/algrgbm96dlsvsiqlnszk1pas8zlbc0z-msmtp-binaries-1.8.22/bin/msmtp" $(<"${FQP}.msmtp") <"${FQP}.mail"; then # this mail goes out the door
-			log "mail [ $2 ] [ $1 ] from queue ; send was successful ; purged from queue"                                           # good news to user
-			'/nix/store/nx7b6wz48p7lli49ms54zp9j4s4yjjf5-coreutils-9.5/bin/rm' -f "${FQP}".*                                        # nuke both queue mail files
-			ALT='t'                                                                                                                 # set queue changed flag
-		else                                                                                                                     # send was unsuccessful
-			RC=$?                                                                                                                   # take msmtp exit code
-			log "mail [ $2 ] [ $1 ] from queue ; send failed ; msmtp rc = $RC"                                                      # bad news ...
+			# log "mail [ $2 ] [ $1 ] from queue ; send was successful ; purged from queue"                                           # good news to user
+			'/nix/store/nx7b6wz48p7lli49ms54zp9j4s4yjjf5-coreutils-9.5/bin/rm' -f "${FQP}".* # nuke both queue mail files
+			ALT='t'                                                                          # set queue changed flag
+		else                                                                              # send was unsuccessful
+			RC=$?                                                                            # take msmtp exit code
+			log "mail [ $2 ] [ $1 ] from queue ; send failed ; msmtp rc = $RC"               # bad news ...
 		fi
 		return $RC # func returns exit code
 	else        # corresponding MSF file not found
@@ -515,19 +515,19 @@ send_mail() { # <-- all mail args ; mail text via TMP
 	[ "$EMAIL_CONN_TEST" != 'x' ] &&
 		[ -z "$EMAIL_CONN_NOTEST" ] && { # do connection test
 		connect_test || {
-			log "mail for [ $* ] : couldn't be sent - host not connected"
+			# log "mail for [ $* ] : couldn't be sent - host not connected"
 			enqueue_mail "$@" # enqueue the mail
 			return
 		}
 	}
 
 	if /nix/store/algrgbm96dlsvsiqlnszk1pas8zlbc0z-msmtp-binaries-1.8.22/bin/msmtp "$@" <"${FQP}.mail" >/dev/null; then # send mail using queue .mail fil
-		log "mail for [ $* ] : send was successful"                                                                        # log it
-		'/nix/store/nx7b6wz48p7lli49ms54zp9j4s4yjjf5-coreutils-9.5/bin/rm' -f "${FQP}".*                                   # remove all queue mail files .mail & .msmtp file
-		run_queue 'sm'                                                                                                     # run/flush any other mails in queue
-	else                                                                                                                # send failed - the mail stays in the queue
-		log "mail for [ $* ] : send was unsuccessful ; msmtp exit code was $?" \
-			"enqueued mail as : [ $ID ] ( $* )" # (queue .mail file is already there)
+		# log "mail for [ $* ] : send was successful"                                                                        # log it
+		'/nix/store/nx7b6wz48p7lli49ms54zp9j4s4yjjf5-coreutils-9.5/bin/rm' -f "${FQP}".* # remove all queue mail files .mail & .msmtp file
+		run_queue 'sm'                                                                   # run/flush any other mails in queue
+	else                                                                              # send failed - the mail stays in the queue
+		# log "mail for [ $* ] : send was unsuccessful ; msmtp exit code was $?" \
+		"enqueued mail as : [ $ID ] ( $* )" # (queue .mail file is already there)
 	fi
 }
 

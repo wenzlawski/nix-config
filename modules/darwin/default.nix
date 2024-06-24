@@ -188,7 +188,7 @@
     msmtpq.serviceConfig = {
       Label = "mw.msmtpq-send";
       ProgramArguments = [
-        "msmtpq"
+        "$HOME/.local/bin/msmtp-queue"
         "-r"
       ];
       StandardErrorPath = "/tmp/msmtpq_mw.err.log";
