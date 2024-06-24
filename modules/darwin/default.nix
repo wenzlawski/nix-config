@@ -185,6 +185,21 @@
         }
       ];
     };
+    msmtpq.serviceConfig = {
+      Label = "mw.msmtpq-send";
+      ProgramArguments = [
+        "msmtpq"
+        "-r"
+      ];
+      StandardErrorPath = "/tmp/msmtpq_mw.err.log";
+      StandardOutPath = "/tmp/msmtpq_mw.out.log";
+      RunAtLoad = true;
+      StartCalendarInterval = [
+        {
+          Minute = 5;
+        }
+      ];
+    };
     borg.serviceConfig = {
       Label = "mw.borgbackup-remote";
       ProgramArguments = ["$HOME/.local/bin/borg_backup.sh"];

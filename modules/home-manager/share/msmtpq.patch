@@ -1,0 +1,24 @@
+---
+ scripts/msmtpq/msmtpq | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/smstpq b/smstpq
+index fbf6938e..90992035 100644
+--- scripts/msmtpq/msmtpq	2024-06-24 01:41:51
++++ scripts/msmtpq/msmtpq	2024-06-24 01:43:51
+@@ -217,13 +217,13 @@
+ 		# would ping -qnc2 -w4 be better ?
+ 		# would ping -qnc1 -w10 or -w20 be better ?
+ 		#ping -qnc1 -w4 debian.org >/dev/null 2>&1 || return 1
+-		ping -qnc2 -w10 debian.org >/dev/null 2>&1 || return 1
++		ping -qnc2 debian.org >/dev/null 2>&1 || return 1
+ 
+ 	elif [ "$EMAIL_CONN_TEST" = 'P' ]; then # use quicker ping test
+ 		# I personally think that including a DNS lookup
+ 		# is a better connection test but some
+ 		# have found the above test too slow
+-		ping -qnc1 -w4 8.8.8.8 >/dev/null 2>&1 || return 1
++		ping -qnc1 8.8.8.8 >/dev/null 2>&1 || return 1
+ 
+ 	elif [ "$EMAIL_CONN_TEST" = 'n' ]; then # use netcat (nc) test
+ 		# must, of course, have netcat (nc) installed

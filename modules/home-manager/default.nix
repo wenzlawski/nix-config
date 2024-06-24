@@ -12,6 +12,7 @@ in {
   home.packages = with pkgs; [
     # bruno # build fails
     # calibre # broken?
+    inetutils
     alejandra
     alt-tab-macos
     anki-bin
@@ -209,37 +210,6 @@ in {
 
     mbsync.enable = true;
     msmtp.enable = true;
-
-    # borgmatic = {
-    #   enable = true;
-    #   backups = {
-    #     personal = {
-    #       location = {
-    #         sourceDirectories = ["/Users/mw/.config"];
-    #         repositories = ["ssh://u411549@u411549.your-storagebox.de/./personal-repo"];
-    #       };
-    #       storage.encryptionPasscommand = "security find-generic-password -s borg-repo -w";
-    #       consistency.checks = [
-    #         {
-    #           name = "repository";
-    #           frequency = "2 weeks";
-    #         }
-    #         {
-    #           name = "archives";
-    #           frequency = "4 weeks";
-    #         }
-    #         {
-    #           name = "data";
-    #           frequency = "6 weeks";
-    #         }
-    #         {
-    #           name = "extract";
-    #           frequency = "6 weeks";
-    #         }
-    #       ];
-    #     };
-    #   };
-    # };
   };
 
   accounts.email = {
