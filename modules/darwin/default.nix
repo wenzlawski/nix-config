@@ -171,7 +171,7 @@
 
   launchd.user.agents = {
     notmuch.serviceConfig = {
-      Label = "mw.notmuch-email";
+      Label = "de.mw.notmuch-email";
       ProgramArguments = [
         "/etc/profiles/per-user/mw/bin/notmuch"
         "new"
@@ -179,37 +179,40 @@
       StandardErrorPath = "/tmp/notmuch_mw.err.log";
       StandardOutPath = "/tmp/notmuch_mw.out.log";
       RunAtLoad = true;
-      StartCalendarInterval = [
-        {
-          Minute = 5;
-        }
-      ];
+      StartInterval = 300;
     };
     msmtpq.serviceConfig = {
-      Label = "mw.msmtpq-send";
+      Label = "de.mw.msmtpq-send";
+      EnvironmentVariables = {
+        "MSMTP_QUEUE" = "/Users/mw/.local/share/msmtp/queue";
+      };
       ProgramArguments = [
-        "$HOME/.local/bin/msmtp-queue"
-        "-r"
+        "${pkgs.bash}/bin/bash"
+        "-c"
+        "exec $HOME/.local/bin/msmtp-queue -r"
       ];
       StandardErrorPath = "/tmp/msmtpq_mw.err.log";
       StandardOutPath = "/tmp/msmtpq_mw.out.log";
       RunAtLoad = true;
-      StartCalendarInterval = [
-        {
-          Minute = 5;
-        }
-      ];
+      StartInterval = 300;
     };
     borg.serviceConfig = {
-      Label = "mw.borgbackup-remote";
-      ProgramArguments = ["$HOME/.local/bin/borg_backup.sh"];
+      Label = "de.mw.borgbackup-remote";
+      EnvironmentVariables = {
+        "PATH" = "/usr/local/bin";
+      };
+      ProgramArguments = [
+        "${pkgs.bash}/bin/bash"
+        "-c"
+        "exec $HOME/.local/bin/borg_backup.sh"
+      ];
       StandardErrorPath = "/tmp/borg_mw.err.log";
       StandardOutPath = "/tmp/borg_mw.out.log";
       RunAtLoad = true;
       StartCalendarInterval = [
         {
-          Hour = 23;
-          Minute = 59;
+          Hour = 20;
+          Minute = 0;
         }
       ];
     };

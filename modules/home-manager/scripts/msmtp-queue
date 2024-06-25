@@ -27,7 +27,8 @@
 ## change the below line to be
 ##   exec /path/to/msmtpq --q-mgmt
 
-exec msmtpq --q-mgmt "$1"
+echo "$(date):"
+exec $HOME/.local/bin/msmtpq --q-mgmt "$1"
 
 ### resholve directives (auto-generated) ## format_version: 3
 # resholve: keep /nix/store/czpacrsgfzd2vk8qjmq8a2n958jai2yx-msmtp-scripts-1.8.22/bin/msmtpq

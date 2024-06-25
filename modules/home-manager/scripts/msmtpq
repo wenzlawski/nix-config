@@ -498,10 +498,11 @@ make_id() {
 ## ('sendmail' mode only)
 ## enqueue a mail
 ##
-enqueue_mail() {                                       # <-- all mail args ; mail text via TMP
-	if echo "$@" >"${FQP}.msmtp"; then                    # write msmtp command line to queue .msmtp file
-		log "enqueued mail as : [ $ID ] ( $* ) : successful" # (queue .mail file is already there)
-	else                                                  # write failed ; bomb
+enqueue_mail() {                    # <-- all mail args ; mail text via TMP
+	if echo "$@" >"${FQP}.msmtp"; then # write msmtp command line to queue .msmtp file
+		# log "enqueued mail as : [ $ID ] ( $* ) : successful" # (queue .mail file is already there)
+		:
+	else # write failed ; bomb
 		log -e "$?" "queueing - writing msmtp cmd line { $* }" \
 			"           to [ ${ID}.msmtp ] : failed"
 	fi

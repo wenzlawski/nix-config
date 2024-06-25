@@ -2,7 +2,7 @@
 
 # Source config file
 
-. borg.conf
+. $HOME/.local/bin/borg.conf
 
 info() {
 	printf "\n%s %s\n\n" "$(date)" "$*" >&2

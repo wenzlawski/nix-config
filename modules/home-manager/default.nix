@@ -203,9 +203,40 @@ in {
       };
     };
 
+    afew = {
+      enable = true;
+      extraConfig = ''
+        [SpamFilter]
+        [KillThreadsFilter]
+        [ListMailsFilter]
+        [ArchiveSentMailsFilter]
+        sent_tag = sent
+        [MeFilter]
+        [InboxFilter]
+      '';
+    };
     notmuch = {
       enable = true;
+      new.tags = [
+        "new"
+      ];
       hooks.preNew = "/etc/profiles/per-user/mw/bin/mbsync -a";
+      #   # remove "unread" from "replied"
+      #   notmuch tag -unread -new -- tag:replied
+
+      #   # tag all "new" messages "inbox" and "unread"
+      #   notmuch tag +inbox +unread -new -- tag:new
+
+      #   # tag my replies as "sent"
+      #   notmuch tag -new -unread +inbox +sent -- '(from:"marcwenzlawski@posteo.com*" not to:"marcwenzlawski@posteo.com*" not tag:list not tag:archived)'
+
+      #   notmuch tag -inbox +list +emacs -- from:emacs-devel@gnu.org or to:emacs-devel@gnu.org
+      #   notmuch tag -inbox +list +emacs -- from:emacs-orgmode@gnu.org or to:emacs-orgmode@gnu.org
+      #   notmuch tag -inbox +list +emacs -- 'to:"/*@debbugs.gnu.org*/"'
+      #   notmuch tag -inbox +list +emacs -- from:emacs-humanities@gnu.org or to:emacs-humanities@gnu.org not to:emacs-humanities-owner@gnu.org
+      hooks.postNew = ''
+        /etc/profiles/per-user/mw/bin/afew --tag --new
+      '';
     };
 
     mbsync.enable = true;
