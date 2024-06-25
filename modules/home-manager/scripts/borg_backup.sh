@@ -44,7 +44,8 @@ borg create \
 	/Users/mw/Zotero \
 	/Users/mw/personal \
 	/Users/mw/files \
-	/Users/mw/Maildir
+	/Users/mw/Maildir \
+	/Users/mw/Library/Keychains
 
 echo "====== Backup finished: $(date) ======"
 
