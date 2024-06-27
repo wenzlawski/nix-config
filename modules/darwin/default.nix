@@ -242,7 +242,6 @@
       "bitwarden"
       "bruno"
       "calibre"
-      "dropbox"
       "espanso"
       "finestructure/hummingbird/hummingbird"
       "font-eb-garamond"

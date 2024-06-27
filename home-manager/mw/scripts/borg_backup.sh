@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Source config file
 
 . $HOME/.local/bin/borg.conf
