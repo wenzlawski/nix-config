@@ -173,7 +173,7 @@
     notmuch.serviceConfig = {
       Label = "de.mw.notmuch-email";
       ProgramArguments = [
-        "/etc/profiles/per-user/mw/bin/notmuch"
+        "${pkgs.notmuch}/bin/notmuch"
         "new"
       ];
       StandardErrorPath = "/tmp/notmuch_mw.err.log";
@@ -195,6 +195,17 @@
       StandardOutPath = "/tmp/msmtpq_mw.out.log";
       RunAtLoad = true;
       StartInterval = 300;
+    };
+    vdirsyncer.serviceConfig = {
+      Label = "de.mw.vdirsyncer-sync";
+      ProgramArguments = [
+        "${pkgs.vdirsyncer}/bin/vdirsyncer"
+        "sync"
+      ];
+      StandardErrorPath = "/tmp/vdirsyncer_mw.err.log";
+      StandardOutPath = "/tmp/vdirsyncer_mw.out.log";
+      StartInterval = 300;
+      RunAtLoad = true;
     };
     borg.serviceConfig = {
       Label = "de.mw.borgbackup-remote";

@@ -8,6 +8,9 @@ in {
   # Don't change this when you change package input. Leave it alone.
   home.stateVersion = "23.11";
 
+  nixpkgs.overlays = [
+  ];
+
   # specify my home-manager configs
   home.packages = with pkgs; [
     # bruno # build fails
@@ -241,8 +244,10 @@ in {
 
     mbsync.enable = true;
     msmtp.enable = true;
+    msmtp.package = pkgs.msmtp;
     khal = {
       enable = true;
+      package = pkgs.khal;
       locale = {
         timeformat = "%H:%M";
         dateformat = "%d.%m.";

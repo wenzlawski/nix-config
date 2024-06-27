@@ -1,24 +1,37 @@
----
- scripts/msmtpq/msmtpq | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/smstpq b/smstpq
-index fbf6938e..90992035 100644
---- scripts/msmtpq/msmtpq	2024-06-24 01:41:51
-+++ scripts/msmtpq/msmtpq	2024-06-24 01:43:51
-@@ -217,13 +217,13 @@
- 		# would ping -qnc2 -w4 be better ?
- 		# would ping -qnc1 -w10 or -w20 be better ?
- 		#ping -qnc1 -w4 debian.org >/dev/null 2>&1 || return 1
--		ping -qnc2 -w10 debian.org >/dev/null 2>&1 || return 1
-+		ping -qnc2 debian.org >/dev/null 2>&1 || return 1
+diff --git a/scripts/msmtpq/msmtpq b/scripts/msmtpq/msmtpq
+index d8b4039..12eff8e 100755
+--- a/scripts/msmtpq/msmtpq
++++ b/scripts/msmtpq/msmtpq
+@@ -149,19 +149,19 @@ log() {
  
- 	elif [ "$EMAIL_CONN_TEST" = 'P' ]; then # use quicker ping test
- 		# I personally think that including a DNS lookup
- 		# is a better connection test but some
- 		# have found the above test too slow
--		ping -qnc1 -w4 8.8.8.8 >/dev/null 2>&1 || return 1
-+		ping -qnc1 8.8.8.8 >/dev/null 2>&1 || return 1
+   [ -z "$EMAIL_QUEUE_QUIET" ] && dsp "$@"  # display msg to user, as well as logging it
  
- 	elif [ "$EMAIL_CONN_TEST" = 'n' ]; then # use netcat (nc) test
- 		# must, of course, have netcat (nc) installed
+-  if [ -n "$LOG" ] ; then            # log is defined and in use
+-    for ARG ; do                     # each msg line out
+-      [ -n "$ARG" ] && \
+-        echo "$PFX : $ARG" >> "$LOG" # line has content ; send it to log
+-    done
+-  fi
+-
+-  if [ -n "$RC" ] ; then             # an error ; leave w/error return
+-    [ -n "$LKD" ] && lock_queue -u   # unlock here (if locked)
+-    [ -n "$LOG" ] && \
+-      echo "    exit code = $RC" >> "$LOG" # logging ok ; send exit code to log
+-    exit "$RC"                       # exit w/return code
+-  fi
++  # if [ -n "$LOG" ] ; then            # log is defined and in use
++  #   for ARG ; do                     # each msg line out
++  #     [ -n "$ARG" ] && \
++  #       echo "$PFX : $ARG" >> "$LOG" # line has content ; send it to log
++  #   done
++  # fi
++
++  # if [ -n "$RC" ] ; then             # an error ; leave w/error return
++  #   [ -n "$LKD" ] && lock_queue -u   # unlock here (if locked)
++  #   [ -n "$LOG" ] && \
++  #     echo "    exit code = $RC" >> "$LOG" # logging ok ; send exit code to log
++  #   exit "$RC"                       # exit w/return code
++  # fi
+ }
+ 
+ ## write/remove queue lockfile for a queue op
