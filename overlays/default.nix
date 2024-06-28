@@ -1,6 +1,7 @@
 # This file defines overlays
-{inputs, ...}: {
+{inputs, self, ...}: {
   # This one brings our custom packages from the 'pkgs' directory
+  # borg = self.callPackage ./borg { };
   additions = final: _prev: {
     # nest everything under a namespace that's not likely to collide
     # with anything in nixpkgs

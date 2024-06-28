@@ -67,7 +67,7 @@
         import ./shell.nix {inherit pkgs;}
     );
 
-    overlays = import ./overlays {inherit inputs;};
+    overlays = import ./overlays {inherit inputs self;};
 
     # nixosModules = import ./modules/nixos;
 

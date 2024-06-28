@@ -56,7 +56,7 @@ in {
       floating-rules-str
       + "\n"
       + ''
-        yabai -m config layout bsp
+        yabai -m config layout float
       '';
   };
 

@@ -5,14 +5,8 @@
 }: {
   imports = [
     ./fish.nix
-    # ./nushell
     ./git.nix
-    # ./helix.nix
-    # ./npm.nix
-    # ./nvim
     ./ssh.nix
-    # ./tmux.nix
-    # ./zellij.nix
     ./emacs.nix
   ];
 
