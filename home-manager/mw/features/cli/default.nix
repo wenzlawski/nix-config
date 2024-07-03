@@ -66,7 +66,7 @@
     spicetify-cli
     tectonic
     tmux
-    transmission
+    transmission_3
     tre-command
     tree
     w3m
@@ -112,14 +112,19 @@
     alacritty = {
       enable = true;
       settings = {
-        font.size = 18;
-        font.normal.family = "Iosevka Nerd Font";
+        font.size = 14;
+        font.normal.family = "JetBrains Mono";
         window = {
           dimensions = {
             columns = 80;
             lines = 35;
           };
           decorations_theme_variant = "Dark";
+          decorations = "none";
+        };
+        shell = {
+          program = "${pkgs.fish}/bin/fish";
+          args = ["-l"];
         };
       };
     };

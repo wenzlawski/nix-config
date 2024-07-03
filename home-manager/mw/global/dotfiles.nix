@@ -56,5 +56,9 @@
       executable = true;
       recursive = true;
     };
+    "emacs-app" = {
+      target = "Applications/Emacs.app";
+      source = ../dotfiles/Emacs.app;
+    };
   };
 }

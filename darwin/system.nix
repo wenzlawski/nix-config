@@ -22,6 +22,7 @@
       "com.apple.trackpad.scaling" = 1.5;
       AppleEnableSwipeNavigateWithScrolls = true;
       AppleInterfaceStyleSwitchesAutomatically = true;
+      AppleFontSmoothing = 0;
     };
     trackpad = {
       FirstClickThreshold = 0;
