@@ -36,6 +36,36 @@ in {
         idea = "open -an 'IntelliJ IDEA.app'";
       };
 
+    shellAbbrs = {
+      c = "command";
+      em = "emacsclient -nw";
+      emc = "emacsclient -t";
+      exi = "exiftool";
+      g = "git";
+      h = "z";
+      l = "eza";
+      ls = "eza";
+      lh = "eza -lha";
+      ll = "eza -l";
+      lt = "eza --tree";
+      lo = "eza -1";
+      la = "eza -a";
+      lla = "eza -la";
+      n = "nvim";
+      zj = "zellij";
+      hi = "history";
+      dotdot = {
+        regex = "^\\.\\.+$";
+        function = "multicd";
+      };
+      nf = "nix flake";
+      ns = "nix shell";
+      nst = "nix store";
+      nd = "nix develop";
+      nr = "nix run";
+      nb = "nix build";
+    };
+
     functions = {
       # get the current nix store path for the given binary
       nix-which =
@@ -95,10 +125,6 @@ in {
     "vfish" = {
       target = ".config/fish/conf.d/vfish.fish";
       source = ../../dotfiles/fish/conf.d/vfish.fish;
-    };
-    "abbr" = {
-      target = ".config/fish/conf.d/abbr.fish";
-      source = ../../dotfiles/fish/conf.d/abbr.fish;
     };
   };
 }

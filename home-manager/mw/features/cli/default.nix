@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  gnuplot_qt' = pkgs.gnuplot_qt.override {
+  gnuplot_qt' = pkgs.gnuplot.override {
     withQt = true;
     withWxGTK = true;
   };
