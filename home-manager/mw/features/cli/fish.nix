@@ -59,7 +59,6 @@ in {
         function = "multicd";
       };
       nf = "nix flake";
-      ns = "nix shell";
       nst = "nix store";
       nd = "nix develop";
       nr = "nix run";
