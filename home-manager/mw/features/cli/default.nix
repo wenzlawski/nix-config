@@ -2,7 +2,12 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  gnuplot_qt' = pkgs.gnuplot_qt.override {
+    withQt = true;
+    withWxGTK = true;
+  };
+in {
   imports = [
     ./fish.nix
     ./git.nix
@@ -35,7 +40,8 @@
     gnugrep
     gnumake
     gnupg
-    gnuplot
+    gnuplot_qt'
+    qt5.qtbase
     graphviz
     groff
     hledger

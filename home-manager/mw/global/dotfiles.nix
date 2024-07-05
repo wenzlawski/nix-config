@@ -60,5 +60,9 @@
       target = "Applications/Emacs.app";
       source = ../dotfiles/Emacs.app;
     };
+    "gnuplotrc" = {
+      target = ".config/gnuplot/gnuplotrc";
+      source = ../dotfiles/gnuplotrc;
+    };
   };
 }
