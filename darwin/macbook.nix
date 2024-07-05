@@ -12,7 +12,6 @@ in {
     ./features/yabai-scripting-additions.nix
     ./features/brew.nix
     ./features/agents.nix
-    ./features/librewolf.nix
   ];
 
   home-manager.users.mw = import ../home-manager/mw/hosts/macbook-darwin.nix;

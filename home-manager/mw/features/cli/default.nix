@@ -20,6 +20,7 @@ in {
     # calibre # broken?
     inetutils
     alejandra
+    asymptote
     alt-tab-macos
     anki-bin
     bitwarden-cli
@@ -150,6 +151,10 @@ in {
           microtype
           parskip
           graphics
+          latexmk
+          wrapfig
+          capt-of
+          dvisvgm
           ;
       };
     };
