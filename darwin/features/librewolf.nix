@@ -12,13 +12,48 @@
     SearchEngines = {
       Add = [
         {
-          Name = "Plato";
-          URLTemplate = "https://plato.stanford.edu/q={searchTerms}";
-          IconURL = "https://plato.stanford.edu/favicon.ico";
+          Name = "Goodreads";
+          URLTemplate = "https://www.goodreads.com/search?q={searchTerms}";
+          Method = "GET";
+          Alias = "gr";
+          Description = "Goodreads";
+        }
+        {
+          Name = "Fmovies";
+          URLTemplate = "https://fmovies24.to/filter?keyword={searchTerms}";
+          Method = "GET";
+          Alias = "fm";
+          Description = "Fmovies";
+        }
+        {
+          Name = "Libgen";
+          URLTemplate = "https://libgen.rs/search.php?req={searchTerms}";
           Method = "POST";
+          Alias = "lg";
+          Description = "Lib gen";
+          PostData = "q={searchTerms}";
+        }
+        {
+          Name = "Zlib Articles";
+          URLTemplate = "https://singlelogin.re/s/{searchTerms}?";
+          Method = "GET";
+          Alias = "zla";
+          Description = "Z Library Articles";
+        }
+        {
+          Name = "Zlib";
+          URLTemplate = "https://singlelogin.re/s/{searchTerms}?";
+          Method = "GET";
+          Alias = "zl";
+          Description = "Z Library";
+        }
+        {
+          Name = "Plato";
+          URLTemplate = "https://plato.stanford.edu/search/searcher.py?query={searchTerms}";
+          IconURL = "https://plato.stanford.edu/favicon.ico";
+          Method = "GET";
           Alias = ";p";
           Description = "Plato Stanford";
-          PostData = "q={searchTerms}";
         }
         {
           Name = "DuckDuckGo Lite";
