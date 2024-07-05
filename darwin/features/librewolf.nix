@@ -10,7 +10,41 @@
       accessibility.force_disabled.Value = -1;
     };
     SearchEngines = {
+      Default = "DuckDuckGo Lite";
+      Remove = [
+        "Google"
+        "Bing"
+        "Amazon.com"
+        "eBay"
+        "Twitter"
+        "DuckDuckGo"
+        "Wikipedia (en)"
+      ];
       Add = [
+        {
+          Name = "Wikipedia";
+          URLTemplate = "https://en.wikipedia.org/w/index.php?search={searchTerms}";
+          Method = "POST";
+          Alias = "wi";
+          Description = "Wikipedia";
+          PostData = "q={searchTerms}";
+        }
+        {
+          Name = "Google US";
+          URLTemplate = "https://www.google.com/search?q={searchTerms}";
+          Method = "POST";
+          Alias = ";";
+          Description = "Google US";
+          PostData = "q={searchTerms}";
+        }
+        {
+          Name = "DuckDuckGO";
+          URLTemplate = "https://duckduckgo.com/?q={searchTerms}";
+          Method = "POST";
+          Alias = "d";
+          Description = "DuckDuckGo";
+          PostData = "q={searchTerms}";
+        }
         {
           Name = "Goodreads";
           URLTemplate = "https://www.goodreads.com/search?q={searchTerms}";
@@ -50,9 +84,8 @@
         {
           Name = "Plato";
           URLTemplate = "https://plato.stanford.edu/search/searcher.py?query={searchTerms}";
-          IconURL = "https://plato.stanford.edu/favicon.ico";
           Method = "GET";
-          Alias = ";p";
+          Alias = "pl";
           Description = "Plato Stanford";
         }
         {
@@ -93,7 +126,6 @@
           URLTemplate = "https://4get.ca/web?s={searchTerms}";
         }
       ];
-      Default = "DuckDuckGo Lite";
     };
     DisableSystemAddonUpdate = false;
     FirefoxHome = {
