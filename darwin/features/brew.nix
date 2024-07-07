@@ -52,20 +52,8 @@
       "macfuse"
       # "vmware-fusion" # download fails
     ];
-    taps = ["homebrew/cask-fonts" "d12frosted/emacs-plus"];
+    taps = ["homebrew/cask-fonts"];
     brews = [
-      {
-        name = "d12frosted/emacs-plus@30";
-        args = [
-          "--with-dbus"
-          "--with-mailutils"
-          "--with-no-frame-refocus"
-          "--with-xwidgets"
-          "--with-native-comp"
-          "--with-poll"
-          "--with-modern-black-gnu-head-icon"
-        ];
-      }
       "borgbackup/tap/borgbackup-fuse"
     ];
   };

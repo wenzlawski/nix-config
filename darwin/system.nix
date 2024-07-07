@@ -49,7 +49,7 @@
         location = "~/Documents/screenshots";
         type = "png";
       };
-      "org.gnu.Emacs" = {
+      "emacs" = {
         AppleFontSmoothing = false;
         ApplePressAndHoldEnabled = "NO";
       };

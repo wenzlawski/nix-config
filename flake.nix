@@ -1,25 +1,42 @@
 {
   description = "dotfiles";
+
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
     # Where we get most of our software. Giant mono repo with recipes
     # called derivations that say how to build software.
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = github:nixos/nixpkgs/nixpkgs-unstable;
+    nixpkgs-unstable.url = github:nixos/nixpkgs/nixos-unstable;
 
     # Manages configs links things into your home directory
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Controls system level software and settings including fonts
     darwin = {
-      url = "github:lnl7/nix-darwin";
+      url = github:lnl7/nix-darwin;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Spicetify
     # spicetify-nix.url = "github:the-argus/spicetify-nix";
 
-    agenix.url = "github:ryantm/agenix";
+    agenix.url = github:ryantm/agenix;
+
+    nur.url = github:nix-community/NUR;
+
+    emacs-overlay = {
+      url = github:nix-community/emacs-overlay;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

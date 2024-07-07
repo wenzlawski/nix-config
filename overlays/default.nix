@@ -1,5 +1,9 @@
 # This file defines overlays
-{inputs, self, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   # This one brings our custom packages from the 'pkgs' directory
   # borg = self.callPackage ./borg { };
   additions = final: _prev: {

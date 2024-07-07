@@ -42,6 +42,7 @@ in {
     gnumake
     gnupg
     gnuplot_qt'
+    stow
     qt5.qtbase
     graphviz
     groff
@@ -82,6 +83,7 @@ in {
     zellij
     zoxide
     sshfs
+    nix-prefetch-git
   ];
 
   editorconfig.enable = true;
@@ -203,7 +205,7 @@ in {
       settings = {
         general = {
           default_action = "list";
-          editor = ["emacs" "-nc"];
+          editor = ["emacsclient" "-nc"];
         };
 
         "contact table" = {

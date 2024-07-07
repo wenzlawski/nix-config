@@ -10,7 +10,7 @@
       accessibility.force_disabled.Value = -1;
     };
     SearchEngines = {
-      Default = "DuckDuckGo Lite";
+      Default = "DuckDuckGO";
       Remove = [
         "Google"
         "Bing"
@@ -32,16 +32,14 @@
         {
           Name = "Google US";
           URLTemplate = "https://www.google.com/search?q={searchTerms}";
-          Method = "POST";
+          Method = "GET";
           Alias = ";";
           Description = "Google US";
-          PostData = "q={searchTerms}";
         }
         {
           Name = "DuckDuckGO";
           URLTemplate = "https://duckduckgo.com/?q={searchTerms}";
           Method = "POST";
-          Alias = "d";
           Description = "DuckDuckGo";
           PostData = "q={searchTerms}";
         }
@@ -91,7 +89,7 @@
         {
           Name = "DuckDuckGo Lite";
           Description = "Minimal, ad-free version of DuckDuckGo";
-          Alias = "";
+          Alias = "d";
           Method = "POST";
           URLTemplate = "https://start.duckduckgo.com/lite/?q={searchTerms}";
           PostData = "q={searchTerms}";

@@ -35,6 +35,13 @@ in {
     shells = builtins.attrValues {inherit (pkgs) bash bashInteractive zsh fish;};
     systemPath = ["/usr/local/bin"];
     pathsToLink = ["/Applications"];
+    variables = {
+      XDG_CACHE_HOME = "$HOME/.cache";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_STATE_HOME = "$HOME/.local/state";
+      LANG = "en_US.UTF-8";
+    };
   };
 
   security.pam.enableSudoTouchIdAuth = true;
@@ -59,8 +66,10 @@ in {
   # pin nixpkgs in the system flake registry to the revision used
   # to build the config
   nix.registry.nixpkgs.flake = nixpkgs;
+  nix.settings.trusted-users = ["root" "mw"];
 
   nixpkgs.config.allowUnfree = true;
+
   nixpkgs.config.overlays = [
     (final: prev:
       lib.optionalAttrs (prev.stdenv.system == "aarch64-darwin") {

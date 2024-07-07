@@ -80,7 +80,7 @@ in {
       # `nix-shell -p`
       ns = "nix shell nixpkgs#{$argv}";
 
-      drs = "darwin-rebuild switch --flake ~/.config/nix";
+      drs = "darwin-rebuild switch --flake ~/.config/nix $argv";
 
       vfo = "vterm_cmd find-file-other-window (realpath \"$argv\")";
 
@@ -99,7 +99,6 @@ in {
       # end
 
       set fish_greeting # Disable greeting
-      set pure_enable_nixdevshell true
       set -g NIX_BUILD_SHELL $SHELL
       set -g LUA_PATH "$HOME/.local/share/lua/?.lua;;"
       if command -q nix-your-shell

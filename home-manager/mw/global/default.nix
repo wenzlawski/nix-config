@@ -25,9 +25,10 @@ in {
   nixpkgs = {
     overlays = [
       # outputs.overlays.additions
-      # outputs.overlays.modifications
+      outputs.overlays.modifications
       outputs.overlays.unstable-packages
-      # inputs.nur.overlay
+      inputs.emacs-overlay.overlay
+      inputs.nur.overlay
     ];
     config = {
       allowUnfree = true;
@@ -42,7 +43,7 @@ in {
     username = "mw";
     inherit homeDirectory;
     sessionVariables = {
-      EDITOR = "emacs";
+      EDITOR = "emacsclient -nc";
       # TERMINAL = lib.mkDefault "wezterm";
       # COLORTERM = lib.mkDefault "truecolor";
       # BROWSER = lib.mkDefault "firefox";
