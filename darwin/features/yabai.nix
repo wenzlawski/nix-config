@@ -74,6 +74,8 @@ in {
       ctrl - right: ${yabai} -m space --focus next
       ctrl - left: ${yabai} -m space --focus prev
       ctrl - down: ${yabai} -m space --focus recent
+      cmd + alt - space: emacsclient -ne "(my/make-capture-frame)"
+      ${hyper} - space: emacsclient -ne "(my/focus-or-make-ai-frame)"
     '';
   };
 

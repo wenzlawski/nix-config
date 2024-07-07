@@ -52,7 +52,7 @@
 		"type": "staticButton",
 		"title": "capture",
 		"action": "shellScript",
-		"executablePath": "/usr/local/bin/emacsclient",
+		"executablePath": "emacsclient",
 		"shellArguments": ["-ne", "(my/make-capture-frame)"],
 		"align": "right",
 		"bordered": true
@@ -62,21 +62,18 @@
 		"align": "right",
 		"icon_type": "images",
 		"bordered": false,
-		"image": {
-			"filePath": "~/Documents/sleep.png"
-		}
 	},
 	{
 		"type": "volumeDown",
 		"bordered": false,
 		"align": "right",
-		"width": 28
+		"width": 32
 	},
 	{
 		"type": "volumeUp",
 		"bordered": false,
 		"align": "right",
-		"width": 28
+		"width": 32
 	},
 	{
 		"type": "play",
