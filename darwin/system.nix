@@ -20,9 +20,10 @@
       InitialKeyRepeat = 14;
       KeyRepeat = 1;
       "com.apple.trackpad.scaling" = 1.5;
+      "com.apple.keyboard.fnState" = true;
       AppleEnableSwipeNavigateWithScrolls = true;
       AppleInterfaceStyleSwitchesAutomatically = true;
-      AppleFontSmoothing = 0;
+      AppleFontSmoothing = 1;
     };
     trackpad = {
       FirstClickThreshold = 0;
@@ -48,6 +49,10 @@
         location = "~/Documents/screenshots";
         type = "png";
       };
+      "org.gnu.Emacs" = {
+        AppleFontSmoothing = false;
+        ApplePressAndHoldEnabled = "NO";
+      };
       # to apply changes run
       # /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
       # show current with
@@ -56,6 +61,14 @@
       # https://web.archive.org/web/20130430100126/http://hintsforums.macworld.com/showthread.php?t=114785
       "com.apple.symbolichotkeys" = {
         AppleSymbolicHotKeys = {
+          "8" = {
+            # F3
+            enabled = false;
+          };
+          "9" = {
+            # F4
+            enabled = false;
+          };
           "36" = {
             # F11 - show desktop
             enabled = false;

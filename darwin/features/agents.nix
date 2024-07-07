@@ -61,5 +61,21 @@
         }
       ];
     };
+    darkMode.serviceConfig = {
+      Label = "de.mw.darkMode-enable";
+      ProgramArguments = [
+        "${pkgs.bash}/bin/bash"
+        "-c"
+        "exec $HOME/.local/bin/enable_dark.sh"
+      ];
+      StandardErrorPath = "/tmp/dark_mw.err.log";
+      StandardOutPath = "/tmp/dark_mw.out.log";
+      StartCalendarInterval = [
+        {
+          Hour = 18;
+          Minute = 0;
+        }
+      ];
+    };
   };
 }
