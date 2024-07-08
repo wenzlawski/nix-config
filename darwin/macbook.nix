@@ -15,7 +15,7 @@ in {
     ./features/librewolf.nix
   ];
 
-  home-manager.users.mw = import ../home-manager/mw/hosts/macbook-darwin.nix;
+  home-manager.users.mw = import ../home/mw/hosts/macbook-darwin.nix;
 
   system.stateVersion = 4;
 }

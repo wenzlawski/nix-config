@@ -1,0 +1,3 @@
+{
+  xpo = import ./xpo.nix;
+}

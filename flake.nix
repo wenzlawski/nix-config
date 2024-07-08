@@ -94,7 +94,7 @@
 
     # nixosModules = import ./modules/nixos;
 
-    # homeManagerModules = import ./modules/home-manager;
+    homeManagerModules = import ./modules/home-manager;
 
     # home-manager = {
     #   useGlobalPkgs = true;

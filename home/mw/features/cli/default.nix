@@ -13,6 +13,7 @@ in {
     ./git.nix
     ./ssh.nix
     ./emacs.nix
+    #./xpo.nix
   ];
 
   home.packages = with pkgs; [
