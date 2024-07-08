@@ -14,6 +14,7 @@
     "direnv/direnvrc" = ./direnvrc;
     "raycast/scripts" = ./raycast-scripts;
     "gnuplot/gnuplotrc" = ./gnuplotrc;
+    "fish/conf.d/vfish.fish" = ./fish/conf.d/vfish.fish;
   };
 
   homeFilesToLink = {

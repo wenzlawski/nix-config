@@ -118,11 +118,4 @@ in {
     enable = true;
     enableFishIntegration = true;
   };
-
-  home.file = {
-    "vfish" = {
-      target = ".config/fish/conf.d/vfish.fish";
-      source = ../../dotfiles/fish/conf.d/vfish.fish;
-    };
-  };
 }

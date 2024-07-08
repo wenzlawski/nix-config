@@ -7,7 +7,6 @@
   ...
 }: let
   inherit (pkgs.stdenv) isDarwin;
-  nur-no-pkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {};
 
   homeDirectory =
     if isDarwin
