@@ -16,7 +16,8 @@
 in {
   imports = [
     ./accounts.nix
-    ./dotfiles.nix
+    ../features/dotfiles
+    ../features/scripts
     ../features/cli
     ../features/desktop
   ];

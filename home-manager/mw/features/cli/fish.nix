@@ -31,9 +31,9 @@ in {
         http = "${pkgs.xh}/bin/xh";
         cdrr = "cd (git repo-root)";
         alejandra = "${pkgs.alejandra}/bin/alejandra -q";
+        tectonic = "${pkgs.tectonic}/bin/tectonic -X";
       }
       // optionalAttrs isDarwin {
-        idea = "open -an 'IntelliJ IDEA.app'";
       };
 
     shellAbbrs = {

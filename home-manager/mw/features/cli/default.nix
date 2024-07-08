@@ -18,6 +18,7 @@ in {
   home.packages = with pkgs; [
     # bruno # build fails
     # calibre # broken?
+    dotbot
     inetutils
     alejandra
     asymptote
@@ -83,7 +84,7 @@ in {
     zellij
     zoxide
     sshfs
-    nix-prefetch-git
+    nix-prefetch
   ];
 
   editorconfig.enable = true;
@@ -129,7 +130,14 @@ in {
             lines = 35;
           };
           decorations_theme_variant = "Dark";
-          decorations = "none";
+          decorations = "buttonless";
+          padding = {
+            x = 5;
+            y = 5;
+          };
+          resize_increments = true;
+          option_as_alt = "Both";
+          dynamic_padding = true;
         };
         shell = {
           program = "${pkgs.fish}/bin/fish";
