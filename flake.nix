@@ -108,14 +108,9 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in {
         default = pkgs.mkShell {
-          packages = with pkgs; [
-            alejandra
-          ];
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+          buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
         };
-        name = "dots";
-        shellHook = ''
-          ${self.checks.${system}.pre-commit-check.shellHook}
-        '';
       }
     );
 
