@@ -20,7 +20,6 @@ in {
     local-pkgs.emacs-30
     inetutils
     alejandra
-    nixd
     asymptote
     alt-tab-macos
     anki-bin
