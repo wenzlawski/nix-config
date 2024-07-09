@@ -82,7 +82,7 @@
         inherit modules pkgs;
         extraSpecialArgs = {inherit inputs outputs self;};
       };
-  in rec {
+  in            {
     packages = forAllSystems (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
