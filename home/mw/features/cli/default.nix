@@ -9,7 +9,6 @@ in {
     ./fish.nix
     ./git.nix
     ./ssh.nix
-    #./emacs.nix
     #./xpo.nix
   ];
 
