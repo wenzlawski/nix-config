@@ -13,28 +13,34 @@
   inputs = {
     # Where we get most of our software. Giant mono repo with recipes
     # called derivations that say how to build software.
-    nixpkgs.url = github:nixos/nixpkgs/nixpkgs-unstable;
-    nixpkgs-unstable.url = github:nixos/nixpkgs/nixos-unstable;
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Manages configs links things into your home directory
-    home-manager.url = github:nix-community/home-manager;
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Controls system level software and settings including fonts
     darwin = {
-      url = github:lnl7/nix-darwin;
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # add git hooks to format nix code before commit
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Spicetify
     # spicetify-nix.url = "github:the-argus/spicetify-nix";
 
-    agenix.url = github:ryantm/agenix;
+    agenix.url = "github:ryantm/agenix";
 
-    nur.url = github:nix-community/NUR;
+    nur.url = "github:nix-community/NUR";
 
     emacs-overlay = {
-      url = github:nix-community/emacs-overlay;
+      url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -45,6 +51,7 @@
     home-manager,
     darwin,
     agenix,
+    pre-commit-hooks,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -91,6 +98,37 @@
     );
 
     overlays = import ./overlays {inherit inputs self;};
+
+    checks = forAllSystems (
+      system: {
+        # eval-tests per system
+        # eval-tests = allSystems.${system}.evalTests == {};
+
+        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = nixpkgs.lib.path.append ./.;
+          hooks = {
+            alejandra.enable = true; # formatter
+            # Source code spell checker
+            # typos = {
+            #   enable = true;
+            #   settings = {
+            #     write = true; # Automatically fix typos
+            #     configPath = "./.typos.toml"; # relative to the flake root
+            #   };
+            # };
+            # prettier = {
+            #   enable = true;
+            #   settings = {
+            #     write = true; # Automatically format files
+            #     configPath = "./.prettierrc.yaml"; # relative to the flake root
+            #   };
+            # };
+            # deadnix.enable = true; # detect unused variable bindings in `*.nix`
+            # statix.enable = true; # lints and suggestions for Nix code(auto suggestions)
+          };
+        };
+      }
+    );
 
     # nixosModules = import ./modules/nixos;
 
