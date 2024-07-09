@@ -1,5 +1,4 @@
-{ pkgs }:
-
+{pkgs}:
 pkgs.writeShellScriptBin "borg_backup" ''
-    echo "hello world"
+  echo "hello world"
 ''
