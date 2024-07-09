@@ -5,8 +5,12 @@
   config,
   ...
 }: let
+  replaceString = builtins.replaceStrings ["emacsclient"] ["${pkgs.local-pkgs.emacs-30}/bin/emacsclient"];
+  patchedText = replaceString (builtins.readFile ./mtmr.json);
+  patchedFile = pkgs.writeText "item.json" patchedText;
+in let
   configFilesToLink = {
-    "mtmr/items.json" = ./mtmr.json;
+    "mtmr/items.json" = "${patchedFile}";
     "espanso/config/default.yml" = ./espanso/config/default.yml;
     "espanso/match/base.yml" = ./espanso/match/base.yml;
     "espanso/match/english.yml" = ./espanso/match/english.yml;
