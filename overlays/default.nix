@@ -19,6 +19,10 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+    gnuplot = prev.gnuplot.override {
+      withQt = true;
+      withWxGTK = true;
+    };
     khal = prev.khal.overrideAttrs (old: {
       src = prev.fetchFromGitHub {
         owner = "pimutils";

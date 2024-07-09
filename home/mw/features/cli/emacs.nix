@@ -18,12 +18,13 @@ in {
           withNativeCompilation = true;
         })
         .overrideAttrs (old: {
-          src = pkgs.fetchFromSavannah {
+          src = pkgs.fetchFromGitHub {
+            owner = "emacs-mirror";
             repo = "emacs";
             # rev = "emacs-29.4";
-            rev = "4d21dff571477ca0308293815f3025897bc089a4";
+            rev = "e392382e2e26ea6d6afa459621c289007c8ea77c";
             # hash = "sha256-MQ0A4Nlagt2VSENcAAk4A1oju3ebAExiVgga7k6kRW4=";
-            sha256 = "1mdfz70ym8slcpqycmpxy0f3dhdrs7vnd9qabd88q7gm7hncaw6c";
+            sha256 = "11h55d00vlz1rkjvim65pd347s44ks0dmkxnlzwac8ykgryjzx30";
 
             # sha256 = "0sv7g106g48bwbwwypcr59r8wbd1kxzgdx34lwfn1xhd574zl8ql";
           };

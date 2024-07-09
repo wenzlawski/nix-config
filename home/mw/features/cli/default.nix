@@ -3,23 +3,21 @@
   pkgs,
   ...
 }: let
-  gnuplot_qt' = pkgs.gnuplot.override {
-    withQt = true;
-    withWxGTK = true;
-  };
+  # emacs-30 = import ./emacs.nix;
 in {
   imports = [
     ./fish.nix
     ./git.nix
     ./ssh.nix
-    ./emacs.nix
+    #./emacs.nix
     #./xpo.nix
   ];
 
   home.packages = with pkgs; [
-    # bruno # build fails
-    # calibre # broken?
-    dotbot
+    # local-pkgs.borg-scripts.borg-scripts
+    # local-pkgs.testhello
+    # local-pkgs.xpo
+    local-pkgs.emacs-30
     inetutils
     alejandra
     asymptote
@@ -43,7 +41,7 @@ in {
     gnugrep
     gnumake
     gnupg
-    gnuplot_qt'
+    gnuplot
     stow
     qt5.qtbase
     graphviz
@@ -85,7 +83,7 @@ in {
     zellij
     zoxide
     sshfs
-    nix-prefetch
+    nix-prefetch-git
   ];
 
   editorconfig.enable = true;
@@ -124,7 +122,7 @@ in {
       enable = true;
       settings = {
         font.size = 14;
-        font.normal.family = "JetBrains Mono";
+        font.normal.family = "DejaVuSansM Nerd Font";
         window = {
           dimensions = {
             columns = 80;
@@ -188,10 +186,10 @@ in {
       new.tags = [
         "new"
       ];
-      hooks.preNew = "/etc/profiles/per-user/mw/bin/mbsync -a";
+      hooks.preNew = "${pkgs.isync}/bin/mbsync -a";
 
       hooks.postNew = ''
-        /etc/profiles/per-user/mw/bin/afew --tag --new
+        ${pkgs.afew}/bin/afew --tag --new
       '';
     };
 
