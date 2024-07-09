@@ -51,7 +51,6 @@
     home-manager,
     darwin,
     agenix,
-    pre-commit-hooks,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -82,7 +81,7 @@
         inherit modules pkgs;
         extraSpecialArgs = {inherit inputs outputs self;};
       };
-  in                {
+  in {
     packages = forAllSystems (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -94,7 +93,7 @@
 
     checks = forAllSystems (
       system: {
-        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
           src = nixpkgs.lib.path.append ./.;
           hooks = {
             alejandra.enable = true; # formatter
