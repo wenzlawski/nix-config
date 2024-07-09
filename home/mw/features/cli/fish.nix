@@ -84,6 +84,14 @@ in {
 
       vfo = "vterm_cmd find-file-other-window (realpath \"$argv\")";
 
+      buf = ''
+        set -l input ()
+        while read -d '\n' -l line
+            set -a input $line
+        end
+        vterm_cmd my/vterm-to-buffer $input
+      '';
+
       multicd = "echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)";
     };
 
@@ -99,6 +107,7 @@ in {
       # end
 
       set fish_greeting # Disable greeting
+      set -u tide_time_format '%T '
       set -g NIX_BUILD_SHELL $SHELL
       set -g LUA_PATH "$HOME/.local/share/lua/?.lua;;"
       if command -q nix-your-shell
