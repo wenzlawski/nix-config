@@ -90,44 +90,38 @@
         import ./pkgs {inherit pkgs;}
     );
 
-    devShells = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./shell.nix {inherit pkgs;}
-    );
-
     overlays = import ./overlays {inherit inputs self;};
 
     checks = forAllSystems (
       system: {
-        # eval-tests per system
-        # eval-tests = allSystems.${system}.evalTests == {};
-
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = nixpkgs.lib.path.append ./.;
           hooks = {
             alejandra.enable = true; # formatter
-            # Source code spell checker
-            # typos = {
-            #   enable = true;
-            #   settings = {
-            #     write = true; # Automatically fix typos
-            #     configPath = "./.typos.toml"; # relative to the flake root
-            #   };
-            # };
-            # prettier = {
-            #   enable = true;
-            #   settings = {
-            #     write = true; # Automatically format files
-            #     configPath = "./.prettierrc.yaml"; # relative to the flake root
-            #   };
-            # };
-            # deadnix.enable = true; # detect unused variable bindings in `*.nix`
-            # statix.enable = true; # lints and suggestions for Nix code(auto suggestions)
           };
         };
       }
+    );
+
+    devShells = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            alejandra
+          ];
+        };
+        name = "dots";
+        shellHook = ''
+          ${self.checks.${system}.pre-commit-check.shellHook}
+        '';
+      }
+    );
+
+    formatter = forAllSystems (
+      # alejandra is a nix formatter with a beautiful output
+      system: nixpkgs.legacyPackages.${system}.alejandra
     );
 
     # nixosModules = import ./modules/nixos;
