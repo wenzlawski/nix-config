@@ -14,10 +14,12 @@
       ShowPathbar = true;
       FXPreferredViewStyle = "Nlsv";
     };
+    LaunchServices.LSQuarantine = false;
     NSGlobalDomain = {
       AppleShowAllExtensions = true;
+      ApplePressAndHoldEnabled = false;
       AppleShowAllFiles = true;
-      InitialKeyRepeat = 14;
+      InitialKeyRepeat = 10;
       KeyRepeat = 1;
       "com.apple.trackpad.scaling" = 1.5;
       "com.apple.keyboard.fnState" = true;
@@ -36,6 +38,7 @@
       autohide-delay = 0.0;
       autohide-time-modifier = 0.4;
       expose-animation-duration = 0.5;
+      launchanim = false;
       minimize-to-application = true;
       orientation = "right";
       persistent-apps = null;
@@ -48,6 +51,21 @@
       "com.apple.screencapture" = {
         location = "~/Documents/screenshots";
         type = "png";
+        disable-shadow = true;
+      };
+      "com.apple.BluetoothAudioAgent"."Apple Bitpool Min (editable)" = 40;
+      "com.apple.finder" = {
+        DisableAllAnimations = true;
+        NewWindowTarget = "PfDe";
+        NewWindowTargetPath = "file://\${HOME}/";
+        ShowExternalHardDrivesOnDesktop = false;
+        ShowHardDrivesOnDesktop = false;
+        ShowMountedServersOnDesktop = false;
+        ShowRemovableMediaOnDesktop = false;
+      };
+      "com.apple.desktopservices" = {
+        DSDontWriteNetworkStores = true;
+        DSDontWriteUSBStores = true;
       };
       "emacs" = {
         AppleFontSmoothing = false;
