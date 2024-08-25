@@ -6,11 +6,14 @@
 }: {
   # This one brings our custom packages from the 'pkgs' directory
   # borg = self.callPackage ./borg { };
-  additions = final: _prev: {
-    # nest everything under a namespace that's not likely to collide
-    # with anything in nixpkgs
-    local-pkgs = import ../pkgs {pkgs = final;};
-  };
+  # additions = final: _prev: {
+  #   # nest everything under a namespace that's not likely to collide
+  #   # with anything in nixpkgs
+  #   local-pkgs = import ../pkgs {pkgs = final;};
+  # };
+
+  # This one brings our custom packages from the 'pkgs' directory
+  additions = final: _prev: import ../pkgs final.pkgs;
 
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
@@ -25,8 +28,8 @@
     };
     khal = prev.khal.overrideAttrs (old: {
       src = prev.fetchFromGitHub {
-        owner = "pimutils";
-        repo = "khal";
+        owner = old.src.owner;
+        repo = old.src.repo;
         rev = "4b6e79912eca9c3fcba8415d4e0c18d87e9d13f4";
         hash = "sha256-Cb0FM7K9F9Coo/1cMkEiMnRoaNmUKnpShRNvLZpGH+g=";
       };
