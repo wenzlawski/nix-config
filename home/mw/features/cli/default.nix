@@ -16,13 +16,15 @@ in {
     # local-pkgs.borg-scripts.borg-scripts
     # local-pkgs.testhello
     # local-pkgs.xpo
-    local-pkgs.emacs-30
+    # local-pkgs.emacs-30
+    emacs-30withpkgs
     inetutils
     alejandra
     asymptote
+    enchant
     alt-tab-macos
     anki-bin
-    bitwarden-cli
+    # bitwarden-cli
     shfmt
     bottom
     broot
@@ -61,8 +63,8 @@ in {
     nix-your-shell
     nixfmt-classic
     nixpkgs-fmt
-    nodePackages.prettier
-    notmuch
+    # nodePackages.prettier
+    # notmuch
     pdftk
     poppler_utils
     raycast
@@ -168,7 +170,7 @@ in {
     };
 
     afew = {
-      enable = true;
+      enable = false;
       extraConfig = ''
         [SpamFilter]
         [KillThreadsFilter]
@@ -181,7 +183,7 @@ in {
     };
 
     notmuch = {
-      enable = true;
+      enable = false;
       new.tags = [
         "new"
       ];

@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  replaceString = builtins.replaceStrings ["emacsclient"] ["${pkgs.local-pkgs.emacs-30}/bin/emacsclient"];
+  replaceString = builtins.replaceStrings ["emacsclient"] ["${pkgs.emacs-30withpkgs}/bin/emacsclient"];
   patchedText = replaceString (builtins.readFile ./mtmr.json);
   patchedFile = pkgs.writeText "item.json" patchedText;
 in let

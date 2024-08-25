@@ -43,6 +43,11 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    emacs-plus = {
+      url = "github:d12frosted/homebrew-emacs-plus";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -96,19 +101,20 @@
       }
     );
 
-    devShells = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        default = pkgs.mkShell {
-          inherit (self.checks.${system}.pre-commit-check) shellHook;
-          packages = with pkgs; [
-            nixd
-          ];
-          buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-        };
-      }
-    );
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      default = pkgs.mkShell {
+        inherit (self.checks.${system}.pre-commit-check) shellHook;
+        buildInputs =
+          self.checks.${system}.pre-commit-check.enabledPackages
+          ++ (with pkgs; [nixd]);
+
+        packages = with pkgs; [
+          nixd
+        ];
+      };
+    });
 
     formatter = forAllSystems (
       # alejandra is a nix formatter with a beautiful output

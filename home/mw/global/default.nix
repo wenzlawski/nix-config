@@ -28,7 +28,6 @@ in {
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
       inputs.emacs-overlay.overlay
-      inputs.nur.overlay
     ];
     config = {
       allowUnfree = true;
@@ -55,5 +54,5 @@ in {
   # systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.11";
 }
