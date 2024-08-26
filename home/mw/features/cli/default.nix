@@ -170,7 +170,7 @@ in {
     };
 
     afew = {
-      enable = false;
+      enable = true;
       extraConfig = ''
         [SpamFilter]
         [KillThreadsFilter]
@@ -183,7 +183,7 @@ in {
     };
 
     notmuch = {
-      enable = false;
+      enable = true;
       new.tags = [
         "new"
       ];
