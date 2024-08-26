@@ -109,10 +109,6 @@
         buildInputs =
           self.checks.${system}.pre-commit-check.enabledPackages
           ++ (with pkgs; [nixd]);
-
-        packages = with pkgs; [
-          nixd
-        ];
       };
     });
 
