@@ -59,7 +59,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>/run/current-system/sw/bin/zsh -c 'emacs'</string>
+					<string>/run/current-system/sw/bin/zsh -c ~/.nix-profile/bin/emacs</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>

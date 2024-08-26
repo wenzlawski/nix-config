@@ -24,7 +24,7 @@ in let
   homeFilesToLink = {
     "Library/Keyboard Layouts/Colemak_DH.bundle" = ./Colemak_DH.bundle;
     "Library/KeyBindings/DefaultKeyBinding.dict" = ./DefaultKeyBinding.dict;
-    "Applications/Emacs.app" = ./Emacs.app;
+    # "Applications/Emacs.app" = ./Emacs.app;
   };
 
   dataFilesToLink = {
