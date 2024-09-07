@@ -31,8 +31,6 @@
     ];
 
     ignores = [
-      ".env"
-      ".envrc"
       ".direnv/"
       "*.swp"
       ".idea/"

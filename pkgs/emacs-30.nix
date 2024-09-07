@@ -8,7 +8,8 @@ in
   (pkgs.emacs-unstable.override {
     withNativeCompilation = true;
   })
-  .overrideAttrs (old: {
+  .overrideAttrs
+  (old: {
     src = pkgs.fetchFromGitHub {
       owner = "emacs-mirror";
       repo = "emacs";

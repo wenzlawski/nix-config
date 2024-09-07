@@ -2,9 +2,7 @@
   description = "dotfiles";
 
   nixConfig = {
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-    ];
+    extra-substituters = ["https://nix-community.cachix.org"];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
@@ -81,25 +79,19 @@
         extraSpecialArgs = {inherit inputs outputs self;};
       };
   in {
-    packages = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./pkgs {inherit pkgs;}
-    );
+    packages = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+      import ./pkgs {inherit pkgs;});
 
     overlays = import ./overlays {inherit inputs self;};
 
-    checks = forAllSystems (
-      system: {
-        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-          src = nixpkgs.lib.path.append ./.;
-          hooks = {
-            alejandra.enable = true; # formatter
-          };
-        };
-      }
-    );
+    checks = forAllSystems (system: {
+      pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+        src = nixpkgs.lib.path.append ./.;
+        hooks = {alejandra.enable = true;};
+      };
+    });
 
     devShells = forAllSystems (system: let
       pkgs = nixpkgs.legacyPackages.${system};
@@ -132,9 +124,7 @@
     #   formatter.x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.nixpkgs-fmt;
 
     darwinConfigurations = {
-      Marcs-MacBook-Pro = mkDarwin "x86_64-darwin" [
-        ./darwin/macbook.nix
-      ];
+      Marcs-MacBook-Pro = mkDarwin "x86_64-darwin" [./darwin/macbook.nix];
     };
   };
 }

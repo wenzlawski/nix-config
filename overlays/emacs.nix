@@ -16,7 +16,8 @@ self: super: {
       # have to force this; lib.version check wrong or because emacsGit?
       withTreeSitter = true;
     }
-    .overrideAttrs (old: {
+    .overrideAttrs
+    (old: {
       src = super.fetchFromGitHub {
         owner = "emacs-mirror";
         repo = "emacs";

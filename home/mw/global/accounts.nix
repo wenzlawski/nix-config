@@ -19,7 +19,9 @@
         imap = {
           host = "imap.mail.me.com";
           port = 993;
-          tls = {enable = true;};
+          tls = {
+            enable = true;
+          };
         };
         smtp = {
           host = "smtp.mail.me.com";
@@ -51,7 +53,9 @@
           host = "posteo.de";
           port = 993;
         };
-        smtp = {host = "posteo.de";};
+        smtp = {
+          host = "posteo.de";
+        };
         mbsync = {
           enable = true;
           create = "maildir";

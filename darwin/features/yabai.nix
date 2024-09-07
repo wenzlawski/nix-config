@@ -12,9 +12,7 @@
     #    "zoom.us"
   ];
 
-  floating-rules = lists.forEach floating-apps (
-    name: "yabai -m rule --add app='${name}' manage=off"
-  );
+  floating-rules = lists.forEach floating-apps (name: "yabai -m rule --add app='${name}' manage=off");
   floating-rules-str = strings.concatStringsSep "\n" floating-rules;
 in {
   services.yabai = {
