@@ -1,1 +1,3 @@
 "^\U007F"   = "deleteWordBackward:";            /* C-DEL        Delete word backward */
+"^y" = "paste:";  /* C-y  Paste from clipboard */
+"^w" = "cut"; /* C-w Cut */

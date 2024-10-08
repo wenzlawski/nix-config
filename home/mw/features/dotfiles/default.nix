@@ -5,8 +5,9 @@
   config,
   ...
 }: let
+  # emacs override defined locally, so this is broken
   replaceString = builtins.replaceStrings ["emacsclient"] [
-    "${pkgs.emacs-30withpkgs}/bin/emacsclient"
+    "/bin/emacsclient"
   ];
   patchedText = replaceString (builtins.readFile ./mtmr.json);
   patchedFile = pkgs.writeText "item.json" patchedText;
@@ -24,9 +25,8 @@ in let
   };
 
   homeFilesToLink = {
-    "Library/Keyboard Layouts/Colemak_DH.bundle" = ./Colemak_DH.bundle;
+    # "Library/Keyboard Layouts/ColemakDH.bundle" = ./ColemakDH.bundle; # have to hard-copy
     "Library/KeyBindings/DefaultKeyBinding.dict" = ./DefaultKeyBinding.dict;
-    # "Applications/Emacs.app" = ./Emacs.app;
   };
 
   dataFilesToLink = {

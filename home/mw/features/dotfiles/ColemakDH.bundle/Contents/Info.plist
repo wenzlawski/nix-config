@@ -5,14 +5,12 @@
 	<key>CFBundleIdentifier</key>
 	<string>io.github.colemakmods.keyboardlayout.colemakdh</string>
 	<key>CFBundleName</key>
-	<string>Colemak_DH</string>
+	<string>Colemak DH</string>
 	<key>CFBundleVersion</key>
 	<string>2.0.0</string>
 	<key>KLInfo_Colemak DH ANSI</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
-		<false/>
-		<key>TISIconIsTemplate</key>
 		<false/>
 		<key>TISInputSourceID</key>
 		<string>io.github.colemakmods.keyboardlayout.colemakdh.colemakdhansi</string>
@@ -23,8 +21,6 @@
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
-		<key>TISIconIsTemplate</key>
-		<false/>
 		<key>TISInputSourceID</key>
 		<string>io.github.colemakmods.keyboardlayout.colemakdh.colemakdhansi-extended</string>
 		<key>TISIntendedLanguage</key>
@@ -33,8 +29,6 @@
 	<key>KLInfo_Colemak DH ISO</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
-		<false/>
-		<key>TISIconIsTemplate</key>
 		<false/>
 		<key>TISInputSourceID</key>
 		<string>io.github.colemakmods.keyboardlayout.colemakdh.colemakdhiso</string>
@@ -45,8 +39,6 @@
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
-		<key>TISIconIsTemplate</key>
-		<false/>
 		<key>TISInputSourceID</key>
 		<string>io.github.colemakmods.keyboardlayout.colemakdh.colemakdhiso-extended</string>
 		<key>TISIntendedLanguage</key>
@@ -56,8 +48,6 @@
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
-		<key>TISIconIsTemplate</key>
-		<false/>
 		<key>TISInputSourceID</key>
 		<string>io.github.colemakmods.keyboardlayout.colemakdh.colemakdhmatrix</string>
 		<key>TISIntendedLanguage</key>
@@ -66,8 +56,6 @@
 	<key>KLInfo_Colemak DH Matrix - Extended</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
-		<false/>
-		<key>TISIconIsTemplate</key>
 		<false/>
 		<key>TISInputSourceID</key>
 		<string>io.github.colemakmods.keyboardlayout.colemakdh.colemakdhmatrix-extended</string>

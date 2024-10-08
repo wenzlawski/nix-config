@@ -11,6 +11,7 @@ in
       ./git.nix
       ./ssh.nix
       #./xpo.nix
+      ./emacs.nix
     ];
 
     home.packages = with pkgs; [
@@ -18,7 +19,7 @@ in
       # local-pkgs.testhello
       # local-pkgs.xpo
       # local-pkgs.emacs-30
-      emacs-30withpkgs
+      #emacs-30withpkgs
       inetutils
       alejandra
       asymptote
@@ -207,9 +208,11 @@ in
         package = pkgs.khal;
         locale = {
           timeformat = "%H:%M";
-          dateformat = "%d.%m.";
-          longdateformat = "%Y-%m-%d";
-          datetimeformat = "%d.%m. %H:%M";
+          # dateformat = "%d.%m.";
+          dateformat = "%Y-%m-%d";
+          longdateformat = "%Y-%m-%d %a"; # %a
+          # datetimeformat = "%d.%m. %H:%M";
+          datetimeformat = "%Y-%m-%d %H:%M";
           longdatetimeformat = "%Y-%m-%d %H:%M";
         };
       };

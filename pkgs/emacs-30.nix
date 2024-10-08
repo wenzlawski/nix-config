@@ -14,7 +14,7 @@ in
       owner = "emacs-mirror";
       repo = "emacs";
       # rev = "emacs-29.4";
-      rev = "e392382e2e26ea6d6afa459621c289007c8ea77c";
+      rev = "9a1c76bf7ff49d886cc8e1a3f360d71e62544802";
       # hash = "sha256-MQ0A4Nlagt2VSENcAAk4A1oju3ebAExiVgga7k6kRW4=";
       sha256 = "11h55d00vlz1rkjvim65pd347s44ks0dmkxnlzwac8ykgryjzx30";
 
