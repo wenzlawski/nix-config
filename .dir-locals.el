@@ -1,1 +1,2 @@
-((nix-mode . ((eval . (eglot-ensure)))))
+((nix-mode . (;; (eval . (eglot-ensure))
+	      )))
