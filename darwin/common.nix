@@ -51,6 +51,8 @@ in {
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_STATE_HOME = "$HOME/.local/state";
       LANG = "en_US.UTF-8";
+      EMAIL_CONN_TEST = "n";
+      EMAIL_QUEUE_QUIET = "t";
     };
   };
 

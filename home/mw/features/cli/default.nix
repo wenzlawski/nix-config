@@ -19,8 +19,11 @@ in
       # local-pkgs.testhello
       # local-pkgs.xpo
       # local-pkgs.emacs-30
+      local-pkgs.testhello
       #emacs-30withpkgs
       inetutils
+      mailutils
+      dateutils
       alejandra
       asymptote
       enchant
@@ -178,13 +181,52 @@ in
       afew = {
         enable = true;
         extraConfig = ''
-          [SpamFilter]
-          [KillThreadsFilter]
-          [ListMailsFilter]
-          [ArchiveSentMailsFilter]
-          sent_tag = sent
-          [MeFilter]
-          [InboxFilter]
+                 [SpamFilter]
+                 [KillThreadsFilter]
+                 [ListMailsFilter]
+                 [ArchiveSentMailsFilter]
+                 sent_tag = sent
+
+                 # [DMARCReportInspectionFilter]
+
+                 [FolderNameFilter]
+                 maildir_separator = /
+                 # folder_transforms = 'Sent Messages:Sent' 'Deleted Messages:Trash'
+
+                 [MailMover]
+                 folders =
+                   posteo/Inbox
+                   posteo/Drafts
+                   posteo/Sent
+                   posteo/Trash
+                   posteo/Junk
+            drafts
+                   # sent
+                 rename = True
+
+                 # rules
+                 posteo/Archive =
+                   'tag:deleted':posteo/Trash
+                   'tag:inbox':posteo/Inbox
+                 posteo/Drafts =
+                   'tag:deleted':posteo/Trash
+                 posteo/Inbox =
+                   'tag:spam':posteo/Junk
+                   'NOT tag:inbox AND NOT tag:new':posteo/Archive
+                   'tag:deleted':posteo/Trash
+                 posteo/Junk =
+                   '!tag:spam AND tag:inbox':posteo/Inbox
+                 posteo/Sent =
+                   'tag:deleted':posteo/Trash
+                 posteo/Trash =
+                   '!tag:deleted AND tag:inbox':posteo/Inbox
+                 # sent =
+                 #   'from:marcwenzlawski@posteo.com':posteo/Sent
+          drafts =
+                   'from:marcwenzlawski@posteo.com':posteo/Drafts
+
+                 # [MeFilter]
+                 [InboxFilter]
         '';
       };
 
@@ -193,10 +235,14 @@ in
         new.tags = [
           "new"
         ];
-        hooks.preNew = "${pkgs.isync}/bin/mbsync -a";
+        hooks.preNew = ''
+          ${pkgs.afew}/bin/afew --move --all
+          ${pkgs.isync}/bin/mbsync -a
+        '';
 
         hooks.postNew = ''
-          ${pkgs.afew}/bin/afew --tag --new
+                 ${pkgs.afew}/bin/afew --tag --new
+          ${pkgs.afew}/bin/afew --move --new
         '';
       };
 

@@ -8,44 +8,33 @@
   accounts = {
     email = {
       accounts.icloud = {
-        primary = true;
         address = "marc.wenzlawski@icloud.com";
         realName = "Marc Wenzlawski";
         userName = "marc.wenzlawski@icloud.com";
-        # gpg = {
-        #   key = "";
-        #   signByDefault = true;
-        # };
+
         imap = {
           host = "imap.mail.me.com";
           port = 993;
-          tls = {
-            enable = true;
-          };
         };
         smtp = {
           host = "smtp.mail.me.com";
           port = 587;
-          tls.enable = true;
-          tls.useStartTls = true;
+          tls = {
+            enable = true;
+            useStartTls = true; # need to, breaks otherwise
+          };
         };
         mbsync = {
-          enable = true;
+          enable = false;
           create = "maildir";
         };
-        msmtp.enable = true;
-        notmuch.enable = true;
-        signature = {
-          text = ''
-            Mit besten Wuenschen
-            Marc Wenzlawski
-          '';
-          showSignature = "append";
-        };
+        msmtp.enable = false;
+        notmuch.enable = false;
         passwordCommand = "security find-generic-password -s mbsync-icloud-password -w";
       };
 
       accounts.posteo = {
+        primary = true;
         address = "marcwenzlawski@posteo.com";
         realName = "Marc Wenzlawski";
         userName = "marcwenzlawski@posteo.com";
@@ -55,6 +44,7 @@
         };
         smtp = {
           host = "posteo.de";
+          port = 465;
         };
         mbsync = {
           enable = true;

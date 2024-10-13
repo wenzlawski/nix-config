@@ -13,22 +13,24 @@
       StandardErrorPath = "/tmp/notmuch_mw.err.log";
       StandardOutPath = "/tmp/notmuch_mw.out.log";
       RunAtLoad = true;
-      StartInterval = 300;
+      StartInterval = 60;
     };
     msmtpq.serviceConfig = {
       Label = "de.mw.msmtpq-send";
       EnvironmentVariables = {
         "MSMTP_QUEUE" = "/Users/mw/.local/share/msmtp/queue";
+        "EMAIL_CONN_TEST" = "n";
+        "EMAIL_QUEUE_QUIET" = "t";
       };
       ProgramArguments = [
         "${pkgs.bash}/bin/bash"
         "-c"
-        "exec $HOME/.local/bin/msmtp-queue -r"
+        "exec $HOME/.nix-profile/bin/msmtpq --q-mgmt -r"
       ];
       StandardErrorPath = "/tmp/msmtpq_mw.err.log";
       StandardOutPath = "/tmp/msmtpq_mw.out.log";
       RunAtLoad = true;
-      StartInterval = 300;
+      StartInterval = 150;
     };
     vdirsyncer.serviceConfig = {
       Label = "de.mw.vdirsyncer-sync";
@@ -38,7 +40,7 @@
       ];
       StandardErrorPath = "/tmp/vdirsyncer_mw.err.log";
       StandardOutPath = "/tmp/vdirsyncer_mw.out.log";
-      StartInterval = 300;
+      StartInterval = 150;
       RunAtLoad = true;
     };
     borg.serviceConfig = {
