@@ -6,7 +6,10 @@
 }: {
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs: [epkgs.vterm epkgs.jinx];
+    extraPackages = epkgs: [
+      epkgs.vterm
+      epkgs.jinx
+    ];
     package =
       (pkgs.emacs-unstable.override {
         withNativeCompilation = true;
