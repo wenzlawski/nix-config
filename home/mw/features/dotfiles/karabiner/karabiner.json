@@ -69,12 +69,12 @@
 						]
 					},
 					{
-						"description": "Fn to F15 when pressed twice, fn normally",
+						"description": "Toggle touchbar on RCMD when pressed twice.",
 						"manipulators": [
 							{
 								"conditions": [
 									{
-										"name": "fn_double pressed",
+										"name": "rcmd_double pressed",
 										"type": "variable_if",
 										"value": 1
 									}
@@ -87,14 +87,14 @@
 								},
 								"to": [
 									{
-										"shell_command": "/usr/local/bin/emacsclient -e \"(emacs-everywhere)\""
+										"shell_command": "~/.config/raycast/scripts/hide-touchbar.sh"
 									}
 								],
 								"type": "basic"
 							},
 							{
 								"from": {
-									"key_code": "fn",
+									"key_code": "right_command",
 									"modifiers": {
 										"optional": ["any"]
 									}
@@ -102,12 +102,12 @@
 								"to": [
 									{
 										"set_variable": {
-											"name": "fn_double pressed",
+											"name": "rcmd_double pressed",
 											"value": 1
 										}
 									},
 									{
-										"key_code": "fn"
+										"key_code": "right_command"
 									}
 								],
 								"parameters": {
@@ -117,7 +117,7 @@
 									"to_if_canceled": [
 										{
 											"set_variable": {
-												"name": "fn_double pressed",
+												"name": "rcmd_double pressed",
 												"value": 0
 											}
 										}
@@ -125,7 +125,7 @@
 									"to_if_invoked": [
 										{
 											"set_variable": {
-												"name": "fn_double pressed",
+												"name": "rcmd_double pressed",
 												"value": 0
 											}
 										}
