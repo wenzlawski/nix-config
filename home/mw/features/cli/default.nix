@@ -18,9 +18,7 @@ in
       # local-pkgs.borg-scripts.borg-scripts
       # local-pkgs.testhello
       # local-pkgs.xpo
-      # local-pkgs.emacs-30
       local-pkgs.testhello
-      #emacs-30withpkgs
       inetutils
       mailutils
       dateutils
@@ -48,7 +46,6 @@ in
       gnumake
       gnupg
       gnuplot
-      stow
       qt5.qtbase
       graphviz
       groff
@@ -72,7 +69,6 @@ in
       # notmuch
       pdftk
       poppler_utils
-      raycast
       ripgrep
       ripgrep-all
       sbclPackages.clhs
@@ -148,7 +144,7 @@ in
             option_as_alt = "Both";
             dynamic_padding = true;
           };
-          shell = {
+          terminal.shell = {
             program = "${pkgs.fish}/bin/fish";
             args = ["-l"];
           };
