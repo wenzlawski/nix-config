@@ -68,6 +68,13 @@ in {
       # sleep when "F13" key is pressed (mapped to scroll lock via karabiner)
       f13 : pmset displaysleepnow
 
+      # make floating window fill screen
+      ctrl + alt - return : yabai -m window --grid 1:1:0:0:1:1
+
+      # make floating window fill left-half of screen
+      ctrl + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+      ctrl + alt - right  : yabai -m window --grid 1:2:1:0:1:1
+
       ctrl - up: ${yabai} -m window --focus $(${yabai} -m query --windows --space | jq '.[].id' | sed -n '2p')
       ctrl - right: ${yabai} -m space --focus next
       ctrl - left: ${yabai} -m space --focus prev
