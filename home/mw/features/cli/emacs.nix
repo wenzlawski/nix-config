@@ -19,13 +19,11 @@
         src = pkgs.fetchFromGitHub {
           owner = "emacs-mirror";
           repo = "emacs";
-          # rev = "emacs-29.4";
-          rev = "9a1c76bf7ff49d886cc8e1a3f360d71e62544802";
-          #hash = "sha256-YPQvfX7TI6b4p7bP2oCehOhDRrvF1LjlzOHTDUArBYY=";
+          rev = "ed1d691184df4b50da6b8e1a207e9ccd88aa9ffb";
           hash = "sha256-X5J34BUY42JgA1s76eVeGA9WNtesU2c+JyndIHFbONQ=";
         };
         version = 30.0;
-        name = "emacs-unstable-30.0.90";
+        name = "emacs-unstable-30.0.92";
         configureFlags =
           old.configureFlags
           ++ [
