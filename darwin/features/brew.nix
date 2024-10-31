@@ -51,6 +51,7 @@
       "qlstephen"
       "raycast"
       "spotify"
+      "terminal-notifier"
       "zotero@beta"
       "macfuse"
       # "vmware-fusion" # download fails

@@ -1,0 +1,44 @@
+[SpamFilter]
+#[KillThreadsFilter]
+#[ListMailsFilter]
+
+# [DMARCReportInspectionFilter]
+
+[FolderNameFilter]
+maildir_separator = /
+folder_lowercases = true
+folder_transforms = Trash:deleted Drafts:draft
+
+[Filter.1]
+query = tag:posteo
+tags = -new
+message = Clearing new tags from posteo
+
+[SubAddressFilter]
+
+[MailMover]
+folders =
+  posteo/Archive
+  posteo/Drafts
+  posteo/Inbox
+  posteo/Junk
+  posteo/Trash
+rename = True
+
+# RULES
+posteo/Archive =
+  'tag:deleted':posteo/Trash
+  'NOT tag:archive AND tag:inbox':posteo/Inbox
+posteo/Drafts =
+  'tag:deleted':posteo/Trash
+posteo/Inbox =
+  'NOT tag:inbox AND NOT tag:unread':posteo/Archive
+  'tag:spam':posteo/Junk
+  'tag:deleted':posteo/Trash
+posteo/Junk =
+  'NOT tag:spam AND tag:inbox':posteo/Inbox
+posteo/Trash =
+  'NOT tag:deleted AND tag:archive':posteo/Archive
+  'NOT tag:deleted AND tag:draft':posteo/Drafts
+  'NOT tag:deleted AND tag:inbox':posteo/Inbox
+  'NOT tag:deleted AND tag:spam':posteo/Junk

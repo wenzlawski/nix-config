@@ -38,6 +38,9 @@ in {
     };
   };
 
+  manual.manpages.enable = false;
+  home.extraOutputsToInstall = ["man"];
+
   home = {
     username = "mw";
     inherit homeDirectory;

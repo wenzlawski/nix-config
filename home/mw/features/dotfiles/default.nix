@@ -22,11 +22,13 @@ in let
     "raycast/scripts" = ./raycast-scripts;
     "gnuplot/gnuplotrc" = ./gnuplotrc;
     "fish/conf.d/vfish.fish" = ./fish/conf.d/vfish.fish;
+    "afew/SubAddressFilter.py" = ./afew/SubAddressFilter.py;
   };
 
   homeFilesToLink = {
     # "Library/Keyboard Layouts/ColemakDH.bundle" = ./ColemakDH.bundle; # have to hard-copy
     "Library/KeyBindings/DefaultKeyBinding.dict" = ./DefaultKeyBinding.dict;
+    ".manpath" = ./.manpath;
   };
 
   dataFilesToLink = {

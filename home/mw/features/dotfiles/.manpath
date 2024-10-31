@@ -1,0 +1,3 @@
+MANDATORY_MANPATH /run/current-system/sw/share/man
+MANDATORY_MANPATH /Users/mw/.nix-profile/share/man
+MANDATORY_MANPATH /nix/var/nix/profiles/default/share/man

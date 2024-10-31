@@ -11,7 +11,7 @@ in
       ./git.nix
       ./ssh.nix
       #./xpo.nix
-      ./emacs.nix
+      #./emacs.nix
     ];
 
     home.packages = with pkgs; [
@@ -19,8 +19,11 @@ in
       # local-pkgs.testhello
       # local-pkgs.xpo
       local-pkgs.testhello
+      local-pkgs.alerter
       inetutils
       mailutils
+      csslint
+      stylelint
       dateutils
       alejandra
       asymptote
@@ -86,6 +89,8 @@ in
       zoxide
       sshfs
       nix-prefetch-git
+      # man-pages
+      # man-pages-posix
     ];
 
     editorconfig.enable = true;
@@ -94,6 +99,11 @@ in
       bat = {
         enable = true;
         config.theme = "TwoDark";
+      };
+
+      man = {
+        enable = false;
+        generateCaches = true;
       };
 
       direnv = {
@@ -176,54 +186,7 @@ in
 
       afew = {
         enable = true;
-        extraConfig = ''
-                 [SpamFilter]
-                 [KillThreadsFilter]
-                 [ListMailsFilter]
-                 [ArchiveSentMailsFilter]
-                 sent_tag = sent
-
-                 # [DMARCReportInspectionFilter]
-
-                 [FolderNameFilter]
-                 maildir_separator = /
-                 # folder_transforms = 'Sent Messages:Sent' 'Deleted Messages:Trash'
-
-                 [MailMover]
-                 folders =
-                   posteo/Inbox
-                   posteo/Drafts
-                   posteo/Sent
-                   posteo/Trash
-                   posteo/Junk
-            drafts
-                   # sent
-                 rename = True
-
-                 # rules
-                 posteo/Archive =
-                   'tag:deleted':posteo/Trash
-                   'tag:inbox':posteo/Inbox
-                 posteo/Drafts =
-                   'tag:deleted':posteo/Trash
-                 posteo/Inbox =
-                   'tag:spam':posteo/Junk
-                   'NOT tag:inbox AND NOT tag:new':posteo/Archive
-                   'tag:deleted':posteo/Trash
-                 posteo/Junk =
-                   '!tag:spam AND tag:inbox':posteo/Inbox
-                 posteo/Sent =
-                   'tag:deleted':posteo/Trash
-                 posteo/Trash =
-                   '!tag:deleted AND tag:inbox':posteo/Inbox
-                 # sent =
-                 #   'from:marcwenzlawski@posteo.com':posteo/Sent
-          drafts =
-                   'from:marcwenzlawski@posteo.com':posteo/Drafts
-
-                 # [MeFilter]
-                 [InboxFilter]
-        '';
+        extraConfig = builtins.readFile ./afew.toml;
       };
 
       notmuch = {
@@ -232,13 +195,12 @@ in
           "new"
         ];
         hooks.preNew = ''
-          ${pkgs.afew}/bin/afew --move --all
+          ${pkgs.afew}/bin/afew --move --all --notmuch-args=--no-hooks
           ${pkgs.isync}/bin/mbsync -a
         '';
 
         hooks.postNew = ''
-                 ${pkgs.afew}/bin/afew --tag --new
-          ${pkgs.afew}/bin/afew --move --new
+          ${pkgs.afew}/bin/afew --tag --new
         '';
       };
 
