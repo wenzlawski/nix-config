@@ -4,7 +4,7 @@
 ## Source configuration
 ##
 
-. borg.conf
+. $HOME/.config/borg/borg.conf
 
 export BORG_RSH="${REPOSITORY_KEY}"
 
@@ -12,7 +12,7 @@ export BORG_PASSCOMMAND="${REPOSITORY_PASS}"
 
 REPOSITORY="ssh://${BACKUP_USER}@${REPOSITORY_HOST}:${REPOSITORY_PORT}/./${REPOSITORY_DIR}"
 
-borg key export $REPOSITORY $1
+borg info $REPOSITORY
 
 export BORG_PASSCOMMAND=''
 

@@ -1,6 +1,8 @@
+#!/usr/bin/env bash
+
 # Source config file
 
-. $HOME/.local/bin/borg.conf
+. $HOME/.config/borg/borg.conf
 
 info() {
 	printf "\n%s %s\n\n" "$(date)" "$*" >&2
@@ -28,20 +30,26 @@ borg create \
 	-e"*/node_modules" \
 	-e"*/.DS_Store" \
 	-e"*/.cache" \
+	-e"*/.zig-cache" \
 	-e"*/cache" \
+	-e"*/venv" \
 	-e"*/__pycache__" \
-	-e"Users/mw/.emacs.d/straight" \
-	-e"Users/mw/.emacs.d/eln-cache" \
+	-e"Users/mw/.config/emacs/straight" \
+	-e"Users/mw/.config/emacs/eln-cache" \
+	-e"Users/mw/.config/emacs/tldr" \
+	-e"Users/mw/.config/emacs/devdocs" \
+	-e"Users/mw/.config/raycast/extensions" \
 	$REPOSITORY::"{$BACKUP_TIMESTAMP}" \
 	/Users/mw/.ssh \
 	/Users/mw/.config \
-	/Users/mw/.emacs.d \
 	/Users/mw/.gnupg \
 	/Users/mw/.authinfo.gpg \
 	/Users/mw/Calibre\ Library \
 	/Users/mw/Zotero \
 	/Users/mw/personal \
 	/Users/mw/files \
+	/Users/mw/dev \
+	/Users/mw/Archive \
 	/Users/mw/Maildir \
 	/Users/mw/Library/Keychains
 

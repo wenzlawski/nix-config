@@ -15,11 +15,12 @@ in
     ];
 
     home.packages = with pkgs; [
-      # local-pkgs.borg-scripts.borg-scripts
       # local-pkgs.testhello
       # local-pkgs.xpo
       local-pkgs.testhello
       local-pkgs.alerter
+      local-pkgs.yabai-tile
+      local-pkgs.borg-scripts
       inetutils
       mailutils
       csslint
@@ -49,7 +50,7 @@ in
       gnumake
       gnupg
       gnuplot
-      qt5.qtbase
+      # qt5.qtbase
       graphviz
       groff
       hledger
@@ -189,11 +190,14 @@ in
         extraConfig = builtins.readFile ./afew.toml;
       };
 
+      lieer.enable = true;
+
       notmuch = {
         enable = true;
         new.tags = [
           "new"
         ];
+        new.ignore = ["/.*[.](json|lock|bak)$/"];
         hooks.preNew = ''
           ${pkgs.afew}/bin/afew --move --all --notmuch-args=--no-hooks
           ${pkgs.isync}/bin/mbsync -a

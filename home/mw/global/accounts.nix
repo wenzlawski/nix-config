@@ -25,11 +25,11 @@
           };
         };
         mbsync = {
-          enable = false;
+          enable = true;
           create = "maildir";
         };
-        msmtp.enable = false;
-        notmuch.enable = false;
+        msmtp.enable = true;
+        notmuch.enable = true;
         passwordCommand = "security find-generic-password -s mbsync-icloud-password -w";
       };
 
@@ -44,7 +44,7 @@
         };
         smtp = {
           host = "posteo.de";
-          port = 465;
+          port = 587; # 465
         };
         mbsync = {
           enable = true;
@@ -53,6 +53,49 @@
         msmtp.enable = true;
         notmuch.enable = true;
         passwordCommand = "security find-generic-password -s mbsync-posteo-password -w";
+      };
+
+      accounts.gmail = {
+        primary = false;
+        address = "marcwenzlawski@gmail.com";
+        realName = "Marc Wenzlawski";
+        userName = "marcwenzlawski@gmail.com";
+        flavor = "gmail.com";
+        imap = {
+          host = "imap.gmail.com";
+          port = 993;
+        };
+        smtp = {
+          host = "smtp.gmail.com";
+          port = lib.mkForce 587;
+        };
+        mbsync = {
+          enable = false;
+          create = "maildir";
+        };
+        lieer = {
+          enable = false;
+          settings = {
+            ignore_tags = [];
+            local_trash_tag = "deleted";
+            ignore_remote_labels = [
+              "CHAT"
+              "IMPORTANT"
+              "CATEGORY_FORUMS"
+              "CATEGORY_PROMOTIONS"
+              "CATEGORY_UPDATES"
+              "CATEGORY_SOCIAL"
+              "CATEGORY_PERSONAL"
+            ];
+          };
+          sync = {
+            enable = false;
+            frequency = "*:0/5";
+          };
+        };
+        msmtp.enable = false;
+        notmuch.enable = false;
+        passwordCommand = "security find-generic-password -s mbsync-gmail-password -w";
       };
     };
 

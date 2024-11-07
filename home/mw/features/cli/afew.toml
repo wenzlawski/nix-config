@@ -7,12 +7,12 @@
 [FolderNameFilter]
 maildir_separator = /
 folder_lowercases = true
-folder_transforms = Trash:deleted Drafts:draft
+folder_transforms = Trash:deleted Drafts:draft 'Sent Messages':sent
 
 [Filter.1]
-query = tag:posteo
+query = tag:posteo OR tag:icloud
 tags = -new
-message = Clearing new tags from posteo
+message = Clearing new tags from tagged mail.
 
 [SubAddressFilter]
 
@@ -23,6 +23,15 @@ folders =
   posteo/Inbox
   posteo/Junk
   posteo/Trash
+
+  icloud/Archive
+  icloud/Drafts
+  icloud/Inbox
+  icloud/Junk
+  icloud/Deleted
+
+  queue
+
 rename = True
 
 # RULES
@@ -42,3 +51,32 @@ posteo/Trash =
   'NOT tag:deleted AND tag:draft':posteo/Drafts
   'NOT tag:deleted AND tag:inbox':posteo/Inbox
   'NOT tag:deleted AND tag:spam':posteo/Junk
+
+icloud/Archive =
+  'tag:deleted':icloud/Deleted
+  'NOT tag:archive AND tag:inbox':icloud/Inbox
+icloud/Drafts =
+  'tag:deleted':icloud/Deleted
+icloud/Inbox =
+  'NOT tag:inbox AND NOT tag:unread':icloud/Archive
+  'tag:spam':icloud/Junk
+  'tag:deleted':icloud/Deleted
+icloud/Junk =
+  'NOT tag:spam AND tag:inbox':icloud/Inbox
+icloud/Deleted =
+  'NOT tag:deleted AND tag:archive':icloud/Archive
+  'NOT tag:deleted AND tag:draft':icloud/Drafts
+  'NOT tag:deleted AND tag:inbox':icloud/Inbox
+  'NOT tag:deleted AND tag:spam':icloud/Junk
+
+queue =
+  'NOT tag:queue AND tag:sent AND tag:posteo':posteo/Sent
+  'tag:deleted AND tag:posteo':posteo/Trash
+  'NOT tag:queue AND tag:sent AND tag:icloud':icloud/Sent
+  'tag:deleted AND tag:icloud':icloud/Trash
+
+
+# [Filter.2]
+# query = tag:icloud
+# tags = -new
+# message = Clearing new tags from tagged mail.

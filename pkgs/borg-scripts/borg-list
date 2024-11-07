@@ -4,7 +4,7 @@
 ## Source configuration
 ##
 
-. borg.conf
+. $HOME/.config/borg/borg.conf
 
 export BORG_RSH="${REPOSITORY_KEY}"
 

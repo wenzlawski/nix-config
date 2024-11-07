@@ -15,6 +15,7 @@
       RunAtLoad = true;
       StartInterval = 60;
     };
+
     msmtpq.serviceConfig = {
       Label = "de.mw.msmtpq-send";
       EnvironmentVariables = {
@@ -32,6 +33,7 @@
       RunAtLoad = true;
       StartInterval = 150;
     };
+
     vdirsyncer.serviceConfig = {
       Label = "de.mw.vdirsyncer-sync";
       ProgramArguments = [
@@ -43,15 +45,16 @@
       StartInterval = 150;
       RunAtLoad = true;
     };
+
     borg.serviceConfig = {
       Label = "de.mw.borgbackup-remote";
       EnvironmentVariables = {
-        "PATH" = "/usr/local/bin";
+        "PATH" = "/usr/local/bin:/usr/bin";
       };
       ProgramArguments = [
         "${pkgs.bash}/bin/bash"
         "-c"
-        "exec $HOME/.local/bin/borg_backup.sh"
+        "${pkgs.local-pkgs.borg-scripts}/bin/borg-backup"
       ];
       StandardErrorPath = "/tmp/borg_mw.err.log";
       StandardOutPath = "/tmp/borg_mw.out.log";
@@ -59,11 +62,13 @@
       StartCalendarInterval = [
         {
           Hour = 20;
-          Minute = 0;
+          Minute = 1;
         }
       ];
     };
+
     darkMode.serviceConfig = {
+      Disabled = true;
       Label = "de.mw.darkMode-enable";
       ProgramArguments = [
         "${pkgs.bash}/bin/bash"

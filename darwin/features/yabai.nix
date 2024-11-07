@@ -61,6 +61,7 @@ in {
   services.skhd = let
     hyper = "cmd + ctrl + alt";
     yabai = "${pkgs.yabai}/bin/yabai";
+    yabai-tile = "${pkgs.local-pkgs.yabai-tile}/bin/yabai-tile";
   in {
     enable = true;
 
@@ -72,8 +73,8 @@ in {
       ctrl + alt - return : yabai -m window --grid 1:1:0:0:1:1
 
       # make floating window fill left-half of screen
-      ctrl + alt - left   : yabai -m window --grid 1:2:0:0:1:1
-      ctrl + alt - right  : yabai -m window --grid 1:2:1:0:1:1
+      ctrl + alt - left   : ${yabai-tile} left
+      ctrl + alt - right  : ${yabai-tile} right
       ctrl + alt + cmd - return : yabai -m window --toggle native-fullscreen
 
       ctrl - up: ${yabai} -m window --focus $(${yabai} -m query --windows --space | jq '.[].id' | sed -n '2p')

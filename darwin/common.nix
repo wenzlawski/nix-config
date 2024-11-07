@@ -14,6 +14,14 @@ in {
     ./system.nix
   ];
 
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
+    ];
+  };
+
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
   };
