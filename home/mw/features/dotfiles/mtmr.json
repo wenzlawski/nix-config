@@ -52,7 +52,7 @@
 		"type": "staticButton",
 		"title": "capture",
 		"action": "shellScript",
-		"executablePath": "emacsclient",
+		"executablePath": "/usr/local/bin/emacsclient",
 		"shellArguments": ["-ne", "(my/make-capture-frame)"],
 		"align": "right",
 		"bordered": true

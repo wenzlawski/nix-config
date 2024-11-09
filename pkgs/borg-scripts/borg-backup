@@ -33,6 +33,7 @@ borg create \
 	-e"*/.zig-cache" \
 	-e"*/cache" \
 	-e"*/venv" \
+	-e"*/.ccls-cache" \
 	-e"*/__pycache__" \
 	-e"Users/mw/.config/emacs/straight" \
 	-e"Users/mw/.config/emacs/eln-cache" \
