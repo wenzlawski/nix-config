@@ -75,6 +75,8 @@ in {
       # make floating window fill left-half of screen
       ctrl + alt - left   : ${yabai-tile} left
       ctrl + alt - right  : ${yabai-tile} right
+      ctrl + alt - up     : ${yabai-tile} up
+      ctrl + alt - down   : ${yabai-tile} down
       ctrl + alt + cmd - return : yabai -m window --toggle native-fullscreen
 
       ctrl - up: ${yabai} -m window --focus $(${yabai} -m query --windows --space | jq '.[].id' | sed -n '2p')
