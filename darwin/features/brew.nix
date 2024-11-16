@@ -54,11 +54,13 @@
       "terminal-notifier"
       "zotero@beta"
       "macfuse"
+      "dutis"
       # "vmware-fusion" # download fails
     ];
     taps = ["homebrew/cask-fonts"];
     brews = [
       "borgbackup/tap/borgbackup-fuse"
+      "tsonglew/dutis"
     ];
   };
 }
