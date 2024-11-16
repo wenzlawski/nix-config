@@ -80,7 +80,7 @@ in
       spicetify-cli
       tectonic
       tmux
-      transmission_3
+      # transmission_3
       tre-command
       tree
       w3m
