@@ -67,6 +67,22 @@
       ];
     };
 
+    khalel.serviceConfig = {
+      Label = "de.mw.khalel-import";
+      EnvironmentVariables = {
+        "PATH" = "/usr/local/bin";
+      };
+      ProgramArguments = [
+        "emacsclient"
+        "-ne"
+        "(khalel-import-events)"
+      ];
+      RunAtLoad = true;
+      StartInterval = 150;
+      StandardErrorPath = "/tmp/khalel_import_mw.err.log";
+      StandardOutPath = "/tmp/khalel_import_mw.out.log";
+    };
+
     darkMode.serviceConfig = {
       Disabled = true;
       Label = "de.mw.darkMode-enable";
