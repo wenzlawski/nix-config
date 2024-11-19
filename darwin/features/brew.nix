@@ -55,6 +55,7 @@
       "zotero@beta"
       "macfuse"
       "dutis"
+      "activitywatch"
       # "vmware-fusion" # download fails
     ];
     taps = ["homebrew/cask-fonts"];
