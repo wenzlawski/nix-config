@@ -40,7 +40,7 @@ in
       curl
       disk-inventory-x
       # dust
-      duti
+      # duti # is broken
       eza
       fd
       findutils
