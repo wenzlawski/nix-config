@@ -28,6 +28,7 @@ in
       dateutils
       alejandra
       asymptote
+      brotab
       enchant
       alt-tab-macos
       anki-bin
@@ -49,7 +50,6 @@ in
       gnugrep
       gnumake
       gnupg
-      gnuplot
       # qt5.qtbase
       graphviz
       groff
@@ -87,7 +87,6 @@ in
       wget
       yt-dlp
       zellij
-      zoxide
       sshfs
       nix-prefetch-git
       # man-pages
@@ -195,6 +194,12 @@ in
             dvisvgm
             ;
         };
+      };
+
+      zoxide = {
+        enable = true;
+        enableFishIntegration = true;
+        options = [];
       };
 
       afew = {
