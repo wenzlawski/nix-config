@@ -154,6 +154,7 @@
         "https://addons.mozilla.org/firefox/downloads/file/3990577/temp_mail-0.0.34.xpi"
         "https://addons.mozilla.org/firefox/downloads/file/4310845/tree_style_tab-4.0.20.xpi"
         "https://addons.mozilla.org/firefox/downloads/file/4263531/youtube_recommended_videos-1.6.7.xpi"
+        "https://addons.mozilla.org/firefox/downloads/file/3955334/brotab-1.4.0.xpi"
       ];
     };
   };
