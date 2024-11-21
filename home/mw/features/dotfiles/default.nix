@@ -19,7 +19,7 @@
 
   homeFilesToLink = {
     "Library/KeyBindings/DefaultKeyBinding.dict" = ./DefaultKeyBinding.dict;
-    "~/Library/Application Support/librewolf/NativeMessagingHosts/brotab_mediator.json" = ./brotab_mediator.json;
+    "Library/Application Support/librewolf/NativeMessagingHosts/brotab_mediator.json" = ./brotab_mediator.json;
     ".manpath" = ./.manpath;
   };
 
