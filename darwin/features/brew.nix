@@ -39,7 +39,6 @@
       "font-gnu-unifont"
       "freeplane"
       "hammerspoon"
-      "hiddenbar"
       "librewolf"
       "linearmouse"
       "logi-options-plus"
