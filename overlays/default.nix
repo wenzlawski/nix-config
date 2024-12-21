@@ -12,16 +12,7 @@
     local-pkgs = import ../pkgs {pkgs = final;};
   };
 
-  # This one brings our custom packages from the 'pkgs' directory
-  # additions = final: _prev: import ../pkgs final.pkgs;
-
-  # This one contains whatever you want to overlay
-  # You can change versions, add patches, set compilation flags, anything really.
-  # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
-    # });
     gnuplot = prev.gnuplot.override {
       withQt = true;
       withWxGTK = true;
@@ -45,17 +36,3 @@
     };
   };
 }
-# overlays = [
-#   (final: prev: {
-#   })
-#   # (final: prev: {
-#   #   msmtp = prev.msmtp.scripts.overrideAttrs (old: {
-#   #     patches =
-#   #       (old.patches or [])
-#   #       ++ [
-#   #         ./modules/home-manager/share/msmtpq.patch
-#   #       ];
-#   #   });
-#   # })
-# ];
-

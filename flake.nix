@@ -6,12 +6,14 @@
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
+    extra-platforms = "x86_64-linux";
   };
 
   inputs = {
     # Where we get most of our software. Giant mono repo with recipes
     # called derivations that say how to build software.
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Manages configs links things into your home directory
@@ -37,6 +39,11 @@
 
     nur.url = "github:nix-community/NUR";
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # emacs-overlay = {
     #   url = "github:nix-community/emacs-overlay";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -61,21 +68,61 @@
     darwinSystems = ["aarch64-darwin" "x86_64-darwin"];
     forAllSystems = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
 
-    mkNixos = modules:
+    nixpkgsWithOverlays = system: let
+      pkgs =
+        if builtins.elem system darwinSystems
+        then inputs.nixpkgs-darwin
+        else nixpkgs;
+    in (import pkgs rec {
+      inherit system;
+
+      config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [
+        ];
+      };
+
+      overlays = [
+        inputs.nur.overlay
+        (_final: prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            inherit (prev) system;
+            inherit config;
+          };
+          gnuplot = prev.gnuplot.override {
+            withQt = true;
+            withWxGTK = true;
+          };
+          khal = prev.khal.overrideAttrs (old: {
+            src = prev.fetchFromGitHub {
+              owner = old.src.owner;
+              repo = old.src.repo;
+              rev = "4b6e79912eca9c3fcba8415d4e0c18d87e9d13f4";
+              hash = "sha256-Cb0FM7K9F9Coo/1cMkEiMnRoaNmUKnpShRNvLZpGH+g=";
+            };
+          });
+          local-pkgs = import ./pkgs {pkgs = _final;};
+        })
+      ];
+    });
+
+    mkNixos = system: modules:
       nixpkgs.lib.nixosSystem {
         inherit modules;
+        pkgs = nixpkgsWithOverlays system;
         specialArgs = {inherit inputs outputs self;};
       };
 
     mkDarwin = system: modules:
       inputs.darwin.lib.darwinSystem {
         inherit modules system;
+        pkgs = nixpkgsWithOverlays system;
         specialArgs = {inherit inputs outputs self;};
       };
 
     mkHome = modules: pkgs:
       home-manager.lib.homeManagerConfiguration {
-        inherit modules pkgs;
+        inherit modules;
         extraSpecialArgs = {inherit inputs outputs self;};
       };
   in {
@@ -105,7 +152,6 @@
     });
 
     formatter = forAllSystems (
-      # alejandra is a nix formatter with a beautiful output
       system: nixpkgs.legacyPackages.${system}.alejandra
     );
 
@@ -125,6 +171,41 @@
 
     darwinConfigurations = {
       Marcs-MacBook-Pro = mkDarwin "x86_64-darwin" [./darwin/macbook.nix];
+    };
+
+    nixosConfigurations = {
+      my-hetzner-vm =
+        mkNixos "x86_64-linux"
+        [./hetzner inputs.disko.nixosModules.disko];
+      # my-hetzner-vm = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+
+      #   modules = [
+      #     ./hetzner
+      #     inputs.disko.nixosModules.disko
+      #   ];
+      # };
+    };
+
+    colmena = {
+      meta = {
+        nixpkgs = import nixpkgs {
+          system = "x86_64-linux";
+        };
+      };
+
+      # Also see the non-Flakes hive.nix example above.
+      hetzner-vm = {
+        deployment = {
+          targetHost = "188.245.177.59";
+          targetUser = "root";
+          buildOnTarget = true;
+        };
+        imports = [
+          ./hetzner
+          inputs.disko.nixosModules.disko
+        ];
+      };
     };
   };
 }

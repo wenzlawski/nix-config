@@ -24,7 +24,7 @@
   };
 
   dataFilesToLink = {
-    "pandoc" = ./pandoc;
+    # "pandoc" = ./pandoc;
     "lua" = ./lua;
   };
 

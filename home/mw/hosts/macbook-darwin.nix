@@ -10,5 +10,8 @@
     ../global
   ];
 
-  home.sessionPath = ["/opt/homebrew/bin/"];
+  home.sessionPath = [
+    "/opt/homebrew/bin/"
+    "/Applications/recoll.app/Contents/MacOS"
+  ];
 }

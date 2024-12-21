@@ -20,6 +20,7 @@
       "colemak-dhk"
       "espanso"
       "finestructure/hummingbird/hummingbird"
+      "jordanbaird-ice"
       "font-eb-garamond"
       "font-et-book"
       "font-fira-code"

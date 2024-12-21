@@ -49,6 +49,7 @@ in {
       # TERMINAL = lib.mkDefault "wezterm";
       # COLORTERM = lib.mkDefault "truecolor";
       # BROWSER = lib.mkDefault "firefox";
+      LUA_PATH = "$HOME/.local/share/pandoc/filters/?.lua;;";
     };
   };
 
