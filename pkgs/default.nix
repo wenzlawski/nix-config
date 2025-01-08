@@ -7,4 +7,5 @@
   testhello = pkgs.callPackage ./testhello.nix {};
   xpo = pkgs.callPackage ./xpo {};
   yabai-tile = pkgs.callPackage ./yabai-tile {};
+  rembg = pkgs.callPackage ./rembg.nix {inherit pkgs;};
 }

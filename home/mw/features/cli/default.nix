@@ -25,7 +25,6 @@
     # bitwarden-cli
     shfmt
     bottom
-    broot
     cmake
     coreutils-prefixed
     curl
@@ -60,6 +59,7 @@
     nixfmt-classic
     nixpkgs-fmt
     nodePackages.prettier
+    nodePackages.svgo
     # notmuch
     pdftk
     poppler_utils
@@ -102,6 +102,7 @@ in {
       alerter
       yabai-tile
       borg-scripts
+      rembg
     ]);
 
   editorconfig.enable = true;
@@ -146,6 +147,11 @@ in {
     };
 
     fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    broot = {
       enable = true;
       enableFishIntegration = true;
     };
