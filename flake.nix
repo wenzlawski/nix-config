@@ -10,49 +10,31 @@
   };
 
   inputs = {
-    # Where we get most of our software. Giant mono repo with recipes
-    # called derivations that say how to build software.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # Manages configs links things into your home directory
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Controls system level software and settings including fonts
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    darwin.url = "github:lnl7/nix-darwin/nix-darwin-24.11";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # add git hooks to format nix code before commit
-    pre-commit-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Spicetify
-    # spicetify-nix.url = "github:the-argus/spicetify-nix";
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
 
     nur.url = "github:nix-community/NUR";
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    # emacs-overlay = {
-    #   url = "github:nix-community/emacs-overlay";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    # emacs-overlay.url = "github:nix-community/emacs-overlay";
+    # emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
-    # emacs-plus = {
-    #   url = "github:d12frosted/homebrew-emacs-plus";
-    #   flake = false;
-    # };
+    # emacs-plus.url = "github:d12frosted/homebrew-emacs-plus";
+    # emacs-plus.flake = false;
   };
 
   outputs = {
@@ -155,6 +137,13 @@
       system: nixpkgs.legacyPackages.${system}.alejandra
     );
 
+    templates = {
+      sbcl = {
+        path = ./templates/sbcl;
+        description = "SBCL template";
+      };
+    };
+
     # nixosModules = import ./modules/nixos;
 
     homeManagerModules = import ./modules/home-manager;
@@ -186,6 +175,8 @@
       #   ];
       # };
     };
+
+    colmenaHive = inputs.colmena.lib.makeHive self.outputs.colmena;
 
     colmena = {
       meta = {

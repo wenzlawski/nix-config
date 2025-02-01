@@ -6,6 +6,7 @@
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
+    ./nextcloud.nix
   ];
 
   # boot.loader.grup.enable = true;
@@ -45,4 +46,5 @@
   nixpkgs.hostPlatform = "x86_64-linux";
 
   system.stateVersion = "24.11";
+  nix.extraOptions = "experimental-features = nix-command flakes";
 }

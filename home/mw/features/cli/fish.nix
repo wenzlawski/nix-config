@@ -16,7 +16,6 @@ in
     home.packages = builtins.attrValues {
       inherit
         (pkgs)
-        eza
         nix-your-shell
         ;
     };

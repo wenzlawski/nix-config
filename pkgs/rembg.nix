@@ -63,6 +63,6 @@ in
       owner = "danielgatis";
       repo = pname;
       rev = version;
-      hash = "sha256-JvFGCX0fop0nVZpwBP00+xz+45eQz6WLZWcx6O8ODVI=";
+      hash = "sha256-VKPiQKV74D1OtMXsGJGfv91ffWyPzsrhM7wveQs3yrQ=";
     };
   }

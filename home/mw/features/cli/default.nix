@@ -79,6 +79,7 @@
     zellij
     sshfs
     nix-prefetch-git
+    telegram-desktop
     # man-pages
     # man-pages-posix
   ];
@@ -147,6 +148,11 @@ in {
     };
 
     fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    eza = {
       enable = true;
       enableFishIntegration = true;
     };

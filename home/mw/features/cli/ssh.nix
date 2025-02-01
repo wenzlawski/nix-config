@@ -22,6 +22,12 @@
         identityFile = "~/.ssh/id_ed25519";
         port = 23;
       };
+      "k" = {
+        user = "mw";
+        hostname = "188.245.177.59";
+        identityFile = "~/.ssh/id_ed25519";
+        port = 23;
+      };
       "github.com" = {
         identityFile = "~/.ssh/id_ed25519";
         extraOptions = {
