@@ -45,7 +45,7 @@ in {
     username = "mw";
     inherit homeDirectory;
     sessionVariables = {
-      EDITOR = "emacsclient -nc";
+      EDITOR = "emacsclient -r";
       # TERMINAL = lib.mkDefault "wezterm";
       # COLORTERM = lib.mkDefault "truecolor";
       # BROWSER = lib.mkDefault "firefox";

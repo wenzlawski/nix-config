@@ -6,7 +6,7 @@
   aspell' = pkgs.aspellWithDicts (d: [d.en d.de]);
   # emacs-30 = import ./emacs.nix;
 
-  unstable-packages = with pkgs.unstable; [
+  stable-packages = with pkgs.unstable; [
     inetutils
     mailutils
     nodePackages.live-server
@@ -31,8 +31,8 @@
     disk-inventory-x
     # dust
     # duti # is broken
-    eza
     fd
+    colmena
     findutils
     gawk
     ghostscript
@@ -80,11 +80,13 @@
     sshfs
     nix-prefetch-git
     telegram-desktop
+    kubectl
+    kubernetes-helm
     # man-pages
     # man-pages-posix
   ];
 
-  stable-packages = with pkgs; [
+  unstable-packages = with pkgs; [
   ];
 in {
   imports = [
@@ -95,6 +97,10 @@ in {
     #./emacs.nix
   ];
 
+  home.shellAliases = {
+    sbcl-ql = "sbcl --noinform --load $HOME/quicklisp/setup.lisp";
+  };
+
   home.packages =
     stable-packages
     ++ unstable-packages
@@ -104,6 +110,7 @@ in {
       yabai-tile
       borg-scripts
       rembg
+      kindletool
     ]);
 
   editorconfig.enable = true;
@@ -248,8 +255,10 @@ in {
     };
 
     mbsync.enable = true;
+    mbsync.package = pkgs.unstable.isync;
     msmtp.enable = true;
-    msmtp.package = pkgs.msmtp;
+    msmtp.package = pkgs.unstable.msmtp;
+
     khal = {
       enable = true;
       package = pkgs.khal;

@@ -21,6 +21,7 @@
     "Library/KeyBindings/DefaultKeyBinding.dict" = ./DefaultKeyBinding.dict;
     "Library/Application Support/librewolf/NativeMessagingHosts/brotab_mediator.json" = ./brotab_mediator.json;
     ".manpath" = ./.manpath;
+    "Library/Fonts" = ./fonts;
   };
 
   dataFilesToLink = {
@@ -28,7 +29,10 @@
     "lua" = ./lua;
   };
 
-  toSource = configDirName: dotfilesPath: {source = dotfilesPath;};
+  toSource = configDirName: dotfilesPath: {
+    source = dotfilesPath;
+    recursive = true;
+  };
 in {
   home.preferXdgDirectories = true;
 

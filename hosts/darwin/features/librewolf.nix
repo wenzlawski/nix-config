@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: {
+  # https://mozilla.github.io/policy-templates/#extensionsettings
   system.defaults.CustomUserPreferences."org.mozilla.librewolf" = {
     EnterprisePoliciesEnabled = true;
     Homepage.StartPage = "none";
@@ -139,22 +140,23 @@
     ExtensionUpdate = true;
     Extensions = {
       Install = [
-        "https://addons.mozilla.org/firefox/downloads/file/3731774/always_open_privately-2.0.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/3923294/behind_the_overlay-0.2.1.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4307738/bitwarden_password_manager-2024.6.3.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/3970612/dark_mode_webextension-0.4.5.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4216095/istilldontcareaboutcookies-1.1.4.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4060590/modern_for_wikipedia-1.25.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4182157/old_reddit_redirect-1.8.1.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4175239/onetab-1.83.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4303450/privacy_badger17-2024.6.14.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/3642264/speed_tweaks_webextension-0.1.3.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4221189/surfingkeys_ff-1.16.1.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4298614/tab_session_manager-7.0.1.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/3990577/temp_mail-0.0.34.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4310845/tree_style_tab-4.0.20.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/4263531/youtube_recommended_videos-1.6.7.xpi"
-        "https://addons.mozilla.org/firefox/downloads/file/3955334/brotab-1.4.0.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/always-open-privately/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/behind_the_overlay/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/istilldontcareaboutcookies/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/modern-for-wikipedia/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/old-reddit-redirect/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/onetab/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/speed-tweaks-webextension/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/surfingkeys_ff/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/tab-session-manager/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/temp-mail/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/tree-style-tab/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/youtube-recommended-videos/latest.xpi"
+        "https://addons.mozilla.org/firefox/downloads/latest/brotab/latest.xpi"
+        "https://github.com/mkaply/queryamoid/releases/download/v0.2/query_amo_addon_id-0.2-fx.xpi"
       ];
     };
   };

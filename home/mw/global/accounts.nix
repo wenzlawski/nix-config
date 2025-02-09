@@ -101,6 +101,31 @@
 
     contact = {
       basePath = ".contacts";
+      accounts.nextcloud = {
+        local = {
+          type = "filesystem";
+          fileExt = ".vcf";
+        };
+        remote = {
+          userName = "mw";
+          url = "https://cloud.k867.uk";
+          type = "carddav";
+          passwordCommand = [
+            "security"
+            "find-generic-password"
+            "-s"
+            "nextcloud-mw"
+            "-w"
+          ];
+        };
+        vdirsyncer = {
+          enable = false;
+          conflictResolution = "local wins";
+        };
+        khard = {
+          enable = true;
+        };
+      };
       accounts.posteo = {
         local = {
           type = "filesystem";
@@ -148,6 +173,30 @@
         };
         vdirsyncer = {
           enable = true;
+          conflictResolution = "local wins";
+        };
+        khal = {
+          enable = true;
+        };
+      };
+      accounts.nextcloud = {
+        local = {
+          type = "filesystem";
+        };
+        remote = {
+          userName = "mw";
+          url = "https://cloud.k867.uk";
+          type = "caldav";
+          passwordCommand = [
+            "security"
+            "find-generic-password"
+            "-s"
+            "nextcloud-mw"
+            "-w"
+          ];
+        };
+        vdirsyncer = {
+          enable = false;
           conflictResolution = "local wins";
         };
         khal = {

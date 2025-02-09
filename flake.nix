@@ -1,14 +1,6 @@
 {
   description = "dotfiles";
 
-  nixConfig = {
-    extra-substituters = ["https://nix-community.cachix.org"];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-    extra-platforms = "x86_64-linux";
-  };
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
@@ -29,6 +21,35 @@
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    colmena.url = "github:zhaofengli/colmena";
+
+    flake-utils.url = "github:numtide/flake-utils/main";
+    flake-compat.url = "github:nix-community/flake-compat/master";
+
+    cachix = {
+      url = "github:cachix/cachix";
+      inputs = {
+        devenv.follows = "devenv";
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    devenv = {
+      url = "github:cachix/devenv/main";
+      inputs = {
+        cachix.follows = "cachix";
+        flake-compat.follows = "flake-compat";
+        # nix.follows = "nix";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    devenv-root = {
+      url = "file+file:///dev/null";
+      flake = false;
+    };
 
     # emacs-overlay.url = "github:nix-community/emacs-overlay";
     # emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
@@ -137,16 +158,12 @@
       system: nixpkgs.legacyPackages.${system}.alejandra
     );
 
-    templates = {
-      sbcl = {
-        path = ./templates/sbcl;
-        description = "SBCL template";
-      };
-    };
-
-    # nixosModules = import ./modules/nixos;
-
-    homeManagerModules = import ./modules/home-manager;
+    apps = import ./apps inputs;
+    # devShells = import ./shells inputs;
+    lib = import ./lib inputs;
+    templates = import ./templates inputs;
+    # nixosModules = import ./modules/nixos inputs;
+    # homeManagerModules = import ./modules/home-manager inputs;
 
     # home-manager = {
     #   useGlobalPkgs = true;
@@ -159,33 +176,24 @@
     #   formatter.x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.nixpkgs-fmt;
 
     darwinConfigurations = {
-      Marcs-MacBook-Pro = mkDarwin "x86_64-darwin" [./darwin/macbook.nix];
+      Marcs-MacBook-Pro = mkDarwin "x86_64-darwin" [./hosts/darwin/macbook.nix];
     };
 
-    nixosConfigurations = {
-      my-hetzner-vm =
-        mkNixos "x86_64-linux"
-        [./hetzner inputs.disko.nixosModules.disko];
-      # my-hetzner-vm = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-
-      #   modules = [
-      #     ./hetzner
-      #     inputs.disko.nixosModules.disko
-      #   ];
-      # };
-    };
+    # nixosConfigurations = {
+    #   my-hetzner-vm =
+    #     mkNixos "x86_64-linux"
+    #     [
+    #       ./hosts/hetzner
+    #       inputs.disko.nixosModules.disko
+    #       agenix.nixosModules.default
+    #     ];
+    # };
 
     colmenaHive = inputs.colmena.lib.makeHive self.outputs.colmena;
 
     colmena = {
-      meta = {
-        nixpkgs = import nixpkgs {
-          system = "x86_64-linux";
-        };
-      };
+      meta.nixpkgs = nixpkgsWithOverlays "x86_64-linux";
 
-      # Also see the non-Flakes hive.nix example above.
       hetzner-vm = {
         deployment = {
           targetHost = "188.245.177.59";
@@ -195,8 +203,21 @@
         imports = [
           ./hetzner
           inputs.disko.nixosModules.disko
+          agenix.nixosModules.default
         ];
       };
     };
+  };
+
+  nixConfig = {
+    extra-substituters = [
+      "https://cache.nixos.org/"
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+    # extra-platforms = "x86_64-linux";
   };
 }

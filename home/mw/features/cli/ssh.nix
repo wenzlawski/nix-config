@@ -18,15 +18,15 @@
         identityFile = "~/.ssh/id_ed25519";
         port = 23;
       };
-      "u411549.your-storagebox.de" = {
-        identityFile = "~/.ssh/id_ed25519";
-        port = 23;
-      };
       "k" = {
         user = "mw";
         hostname = "188.245.177.59";
         identityFile = "~/.ssh/id_ed25519";
-        port = 23;
+      };
+      "rk" = {
+        user = "root";
+        hostname = "188.245.177.59";
+        identityFile = "~/.ssh/id_ed25519";
       };
       "github.com" = {
         identityFile = "~/.ssh/id_ed25519";

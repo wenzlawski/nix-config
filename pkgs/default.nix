@@ -8,4 +8,6 @@
   xpo = pkgs.callPackage ./xpo {};
   yabai-tile = pkgs.callPackage ./yabai-tile {};
   rembg = pkgs.callPackage ./rembg.nix {inherit pkgs;};
+  auctionwatcher = pkgs.callPackage ./auctionwatcher.nix {};
+  kindletool = pkgs.callPackage ./kindletool.nix {inherit pkgs;};
 }

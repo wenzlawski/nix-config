@@ -13,13 +13,6 @@ in
   # nix-colors-lib = inputs.nix-colors.lib-contrib {inherit pkgs;};
   # inherit (nix-colors-lib) shellThemeFromScheme;
   {
-    home.packages = builtins.attrValues {
-      inherit
-        (pkgs)
-        nix-your-shell
-        ;
-    };
-
     programs.fish = {
       enable = true;
 
@@ -30,6 +23,7 @@ in
           cdrr = "cd (git repo-root)";
           alejandra = "${pkgs.alejandra}/bin/alejandra -q";
           tectonic = "${pkgs.tectonic}/bin/tectonic -X";
+          # sbcl-ql = "rlwrap sbcl --noinform --load $HOME/quicklisp/setup.lisp";
         }
         // optionalAttrs isDarwin
         {
@@ -37,6 +31,8 @@ in
 
       shellAbbrs = {
         c = "command";
+        d = "docker";
+        dc = "docker compose";
         em = "emacsclient -nw";
         emc = "emacsclient -t";
         exi = "exiftool";

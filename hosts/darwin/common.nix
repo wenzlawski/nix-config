@@ -51,6 +51,9 @@ in {
         fish
         ;
     };
+    shellAliases = {
+      sbcl-ql = "sbcl --noinform --load $HOME/quicklisp/setup.lisp";
+    };
     systemPath = ["/usr/local/bin"];
     pathsToLink = ["/Applications"];
     variables = {

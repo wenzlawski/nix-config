@@ -56,6 +56,9 @@
       "macfuse"
       "dutis"
       "activitywatch"
+      "nextcloud"
+      "docker"
+      "k3s"
       # "vmware-fusion" # download fails
     ];
     taps = ["homebrew/cask-fonts"];
